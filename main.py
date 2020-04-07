@@ -28,7 +28,7 @@ class RegisterForm(FlaskForm):
     password_again = PasswordField('Повторите пароль', validators=[DataRequired()])
     name = StringField('Имя пользователя', validators=[DataRequired()])
     about = TextAreaField("Немного о себе")
-    submit = SubmitField('Войти')
+    submit = SubmitField('Зарегистрироваться')
 
 
 @login_manager.user_loader
@@ -59,6 +59,11 @@ def logout():
     return redirect("/")
 
 
+@app.route('/basket')
+def basket():
+    return "Ваша корзина"
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def reqister():
     form = RegisterForm()
@@ -84,9 +89,14 @@ def reqister():
     return render_template('register.html', title='Регистрация', form=form)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('base.html', title='Главная')
+
+
+@app.route('/main')
+def main_window():
+    return render_template('mainpage.html', title='Товары')
 
 
 def main():
