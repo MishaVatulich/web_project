@@ -1,12 +1,12 @@
-from flask import Flask
+from flask import Flask, url_for, request, redirect, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
-from flask import redirect, render_template
 from data import db_session
 from data.users import User
+from data.books import Books
 from wtforms.fields.html5 import EmailField
-from flask_login import LoginManager, login_user, logout_user, login_required
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 
 
 app = Flask(__name__)
@@ -65,7 +65,7 @@ def basket():
 
 
 @app.route('/register', methods=['GET', 'POST'])
-def reqister():
+def register():
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
@@ -89,14 +89,41 @@ def reqister():
     return render_template('register.html', title='Регистрация', form=form)
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    return render_template('base.html', title='Главная')
-
-
-@app.route('/main')
+@app.route('/')
 def main_window():
-    return render_template('mainpage.html', title='Товары')
+    return render_template('mainpage.html', title='Главная')
+
+
+@app.route('/sell', methods=['POST', 'GET'])
+@login_required
+def sell():
+    if request.method == 'GET':
+        return render_template('sell.html', title='Продажа книги', fun=url_for('static', filename='css/style.css'))
+    elif request.method == 'POST':
+        try:
+            if request.form['accept'] == 'on':
+                book = Books()
+                book.title = request.form['title']
+                book.description = request.form['description']
+                book.cost = request.form['cost']
+                book.amount = request.form['amount']
+                book.genre = request.form['genre']
+                book.user_id = current_user.id
+
+                session = db_session.create_session()
+                session.add(book)
+                session.commit()
+
+                book.image = book.id
+
+                img = request.files['photo'].read()
+                out = open("static/img/" + str(book.image) + ".jpg", "wb")
+                out.write(img)
+                out.close
+                session.commit()
+                return redirect('/')
+        except Exception as e:
+            return redirect('/sell')
 
 
 def main():
