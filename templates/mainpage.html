@@ -106,7 +106,9 @@
 </head>
     <body>
          <div class="container">
-		<div class="top"><a href="/">Назад</a></div>
+         {% if current_user.is_authenticated %}
+	    	<a class="btn btn-primary " href="/sell">Продать книгу</a>
+         {% endif %}
 			<header class="clearfix">
 				<h1>Наши книги </h1>
 			</header>
