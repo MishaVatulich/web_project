@@ -7,9 +7,6 @@
 </head>
     <body>
         <div class="container">
-            {% if current_user.is_authenticated %}
-                <a class="btn btn-primary " href="/sell">Продать книгу</a>
-             {% endif %}
                 <header class="clearfix">
                     <h1>Наши книги </h1>
                     {% for i in books %}
@@ -25,8 +22,8 @@
                       </div>
                         <div class="product-info">
                           <div class="stars"></div>
-                          <h3 class="product-title">Книга</h3>
-                          <div class="price">500</div>
+                          <h3 class="product-title">{{i.title}}</h3>
+                          <div class="price">{{i.cost}}</div>
                        </div>
                     </div>
                 </section>
