@@ -90,7 +90,8 @@ def register():
 @app.route('/')
 def main_window():
     session = db_session.create_session()
-    return render_template('mainpage.html', title='Главная', books=session.query(Books).all())
+    return render_template('mainpage.html', title='Главная', books=session.query(Books).all(),
+                           fun=url_for('static', filename='css/style2.css'))
 
 
 @app.route('/sell', methods=['POST', 'GET'])
