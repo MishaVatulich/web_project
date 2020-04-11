@@ -1,6 +1,6 @@
 from flask import Flask, url_for, request, redirect, render_template
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 from data import db_session
 from data.users import User
@@ -27,7 +27,6 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Пароль', validators=[DataRequired()])
     password_again = PasswordField('Повторите пароль', validators=[DataRequired()])
     name = StringField('Имя пользователя', validators=[DataRequired()])
-    about = TextAreaField("Немного о себе")
     submit = SubmitField('Зарегистрироваться')
 
 
@@ -80,7 +79,6 @@ def register():
         user = User(
             name=form.name.data,
             email=form.email.data,
-            about=form.about.data
         )
         user.set_password(form.password.data)
         session.add(user)
@@ -106,6 +104,7 @@ def sell():
                 book = Books()
                 book.title = request.form['title']
                 book.description = request.form['description']
+                book.contacts = request.form['contacts']
                 book.cost = request.form['cost']
                 book.amount = request.form['amount']
                 book.genre = request.form['genre']
@@ -123,7 +122,7 @@ def sell():
                 out.close
                 session.commit()
                 return redirect('/')
-        except Exception as e:
+        except Exception:
             return redirect('/sell')
 
 
