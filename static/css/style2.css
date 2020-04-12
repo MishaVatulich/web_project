@@ -3,8 +3,10 @@
     }
     .border {
       width: 300px;
+      margin: 0 auto;
       background: white;
-      padding: 15px;
+      padding: 20px;
+      border: 1px solid #F1E7E8;
     }
     .wrap {
       height: 100%;
@@ -15,19 +17,25 @@
     }
     .product-wrap:after {
       content: '';
-      background: rgba(50, 100, 150, .3);
+      background: rgba(73, 102, 162, .5);
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
       top: 0;
+      z-index: 2;
       opacity: 0;
+      transform: scale(.3);
+      transition: .3s ease-in-out;
     }
     .border:hover .product-wrap:after {
       opacity: 1;
       transform: scale(1);
     }
-
+    .product-wrap a {
+      display: block;
+      text-decoration: none;
+    }
     .product-wrap img {
       display: block;
       width: 100%;
@@ -36,8 +44,10 @@
       position: absolute;
       left: 50%;
       top: 50%;
+      z-index: 3;
       opacity: 0;
       transform: translate(-50%, -50%);
+      transition: .3s ease-in-out;
     }
     .border:hover .loop-action {
       opacity: 1;
@@ -54,9 +64,11 @@
       outline: none;
       position: relative;
       overflow: hidden;
+      z-index: 4;
       text-align: center;
       color: white;
-      min-width: 150px;
+      min-width: 160px;
+      margin: 5px auto;
       transition: .3s ease-in-out;
     }
     .loop-action a:after {
@@ -87,7 +99,7 @@
       font-weight: normal;
       font-family: "Open Sans";
       color: #162546;
-      font-size: 20px;
+      font-size: 18px;
     }
     .price {
       font-family: "Open Sans";
