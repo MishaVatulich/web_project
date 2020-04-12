@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href={{fun}} />
+    <title>{{title}}</title>
+</head>
+    <body>
+        <div class="container">
+                <header class="clearfix">
+                    <h1>Продаваемые Вами книги </h1>
+                    {% for i in books %}
+                    <section>
+                    <div class="border">
+                      <div class="wrap">
+                        <div class="product-wrap">
+                          <a href=""><img src="static/img/{{i.id}}.jpg"></a>
+                        </div>
+                        <div class="loop-action">
+                          <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
+                        </div>
+                      </div>
+                        <div class="product-info">
+                          <div class="stars"></div>
+                          <h3 class="product-title">{{i.title}}</h3>
+                          <div class="price">{{i.cost}}</div>
+                            <div>
+                             <a href="/delete/{{i.id}}" class="btn btn-danger">Удалить</a>
+                            </div>
+                       </div>
+                    </div>
+                </section>
+                </header>
+        </div>
+    </body>
+{% endfor %}
+{% endblock %}
