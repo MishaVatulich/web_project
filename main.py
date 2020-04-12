@@ -7,6 +7,8 @@ from data.users import User
 from data.books import Books
 from wtforms.fields.html5 import EmailField
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from os import abort
+import os
 
 
 app = Flask(__name__)
@@ -59,6 +61,7 @@ def logout():
 
 
 @app.route('/basket')
+@login_required
 def basket():
     return "Ваша корзина"
 
@@ -94,6 +97,15 @@ def main_window():
                            fun=url_for('static', filename='css/style2.css'))
 
 
+@app.route('/profile')
+@login_required
+def profile():
+    session = db_session.create_session()
+    return render_template('profile.html', title='Профиль',
+                           books=session.query(Books).filter(Books.user_id == current_user.id).all(),
+                           fun=url_for('static', filename='css/style2.css'))
+
+
 @app.route('/sell', methods=['POST', 'GET'])
 @login_required
 def sell():
@@ -125,6 +137,30 @@ def sell():
                 return redirect('/')
         except Exception:
             return redirect('/sell')
+
+
+@app.route('/add/<int:id>', methods=['GET', 'POST'])
+@login_required
+def add_to_basket(id):
+    session = db_session.create_session()
+    user = session.query(User).filter(User.id == current_user.id).first()
+    user.basket = user.basket + ' ' + str(id)
+    session.commit()
+    return redirect('/')
+
+
+@app.route('/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def books_delete(id):
+    session = db_session.create_session()
+    book = session.query(Books).filter(Books.id == id, Books.user == current_user).first()
+    if book:
+        session.delete(book)
+        session.commit()
+        os.remove("static/img/" + str(id) + '.jpg')
+    else:
+        abort(404)
+    return redirect('/profile')
 
 
 def main():
