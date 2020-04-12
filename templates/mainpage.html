@@ -22,9 +22,11 @@
                         <div class="product-wrap">
                           <a href=""><img src="static/img/{{i.id}}.jpg"></a>
                         </div>
-                        <div class="loop-action">
-                          <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
-                        </div>
+                          {% if current_user.is_authenticated %}
+                             <div class="loop-action">
+                                 <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
+                             </div>
+                          {% endif %}
                       </div>
                         <div class="product-info">
                           <div class="stars"></div>
