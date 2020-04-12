@@ -23,9 +23,7 @@
                           <a href=""><img src="static/img/{{i.id}}.jpg"></a>
                         </div>
                         <div class="loop-action">
-                            <form>
-                                <button class="basket">В корзину</button>
-                            </form>
+                          <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
                         </div>
                       </div>
                         <div class="product-info">
@@ -38,6 +36,5 @@
                 </header>
         </div>
     </body>
-</html>
 {% endfor %}
 {% endblock %}
