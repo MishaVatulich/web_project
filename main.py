@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired
 from data import db_session
 from data.users import User
 from data.books import Books
+from data.orders import Order
 from wtforms.fields.html5 import EmailField
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from os import abort
@@ -12,7 +13,7 @@ import os
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'Misha&Iarik_secret_key'
+app.config['SECRET_KEY'] = 'Misha&Yarik_secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -64,6 +65,38 @@ def logout():
 @login_required
 def basket():
     return render_template('basket.html', title='Корзина')
+
+
+@app.route('/order')
+def order():
+    return render_template('order.html', title='Оформление')
+
+
+@app.route('/data', methods=['POST', 'GET'])
+@login_required
+def data():
+    if request.method == 'GET':
+        return render_template('order.html', title='Заполнение данных', fun=url_for('static',
+                                                                                    filename='css/forbasket.css'))
+    elif request.method == 'POST':
+        try:
+            if request.form['accept'] == 'on':
+                order = Order()
+                order.city = request.form['city']
+                order.address = request.form['address']
+                order.Delivery = request.form['Delivery']
+                order.package = request.form['package']
+                order.pay = request.form['pay']
+                order.inform = request.form['inform']
+                order.user_id = current_user.id
+
+                session = db_session.create_session()
+                session.add(order)
+                session.commit()
+                session.commit()
+                return redirect('/')
+        except Exception:
+            return redirect('/data')
 
 
 @app.route('/register', methods=['GET', 'POST'])
