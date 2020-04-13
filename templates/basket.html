@@ -1,105 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main class="main">
-
-<div class="container" data-tab-name="basket">
-        <div class="global-error color_red fs_5 mb-20"></div>
-
-        <div class="cart">
-
-<ul class="cart-nav">
-			<a href="/basket">
-			<li class="cart-nav__item js__cart-nav__item_cart active" data-section-tab="basket">Корзина:&nbsp;
-				<span class="cart-nav__cart-value js__basket_count " data-counter="" data-counter-basket="">0</span>
-			</li>
-		</a>
-    <div class="delete-all-items js__delete-all-items-button">Удалить все товары</div>
-</ul>
-            <div class="cart-tab clearfix" data-section-content="basket">
-
-            <div class="cart-items">
-                <div class="preloader_svg mt-20 hidden">
-                    <svg height="50" width="50" viewBox="25 25 50 50" class="preloader_svg__circular">
-                        <circle cx="50" cy="50" r="20" fill="none" stroke-width="10" stroke-miterlimit="10" class="preloader_svg__path">
-                        </circle>
-                    </svg>
-                </div>
-                <div class="cart-items__empty js_cart-items__empty " data-empty="">
-                    <div class="text">Ваша корзина пуста</div>
-                </div>
-                <div data-items-block="" data-basket-tab="">
-
-
-                </div>
-            </div>
-            <div class="basket-bottom">
-                <div class="basket-bottom__content">
-                    <div class="basket-total">
-                        <div class="basket-total__left">
-                            <div class="basket-total__header">
-								<span class="js__items_count">
-									0 товаров
-								</span>
-                                <span class="hidden">
-                                ,
-                                <span class="js__total_mass">0</span>
-                                кг
-                                </span>&nbsp;
-                            </div>
-                            <div class="basket-total__value">
-                                <span>Общая сумма</span><span class="points"></span>
-                                <span class="js__all_items_price">0</span>&nbsp;₽
-                            </div>
-                </div>
-            </div>
-            <style>
-                button.new {
-                  display: inline-block;
-                  font-family: arial,sans-serif;
-                  font-size: 11px;
-                  color: rgb(205,216,228);
-                  text-shadow: 0 -1px rgb(46,53,58);
-                  text-decoration: none;
-                  user-select: none;
-                  line-height: 2em;
-                  padding: 1px 1.2em;
-                  outline: none;
-                  border: 1px solid rgba(33,43,52,1);
-                  border-radius: 3px;
-                  background: rgb(81,92,102) linear-gradient(rgb(81,92,102), rgb(69,78,87));
-                  box-shadow:
-                   inset 0 1px rgba(101,114,126,1),
-                   inset 0 0 1px rgba(140,150,170,.8),
-                   0 1px rgb(83,94,104),
-                   0 0 1px rgb(86,96,106);
-                }
-                a.button17:active {
-                  box-shadow:
-                   inset 0 1px 3px rgba(0,10,20,.5),
-                   0 1px rgb(83,94,104),
-                   0 0 1px rgb(86,96,106);
-                }
-                a.button17:focus:not(:active) {
-                  border: 1px solid rgb(22,32,43);
-                  border-bottom: 1px solid rgb(25,34,45);
-                  background: rgb(53,61,71);
-                  box-shadow:
-                   inset 0 1px 3px rgba(0,10,20,.5),
-                   0 1px rgb(83,94,104),
-                   0 0 1px rgb(86,96,106);
-                  pointer-events: none;
-                }
-            </style>
-            <button class="new" data-url="/order" data-finish="">Оформить заказ
-            </button>
-        </div>
-    </div>
-
-    </div>
-    </div>
-    </div>
-
-    </main>
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href={{fun}} />
+    <title>Корзина</title>
+</head>
+<body>
+<style>
+    .colortext {
+     color: brown;
+   }
+</style>
+<h1><span class="colortext">Ваша корзина</span></h1>
+<div class="alert alert-success" role="alert">
+  Здесь будут храниться все добавленные Вами товары
+</div>
+<style>
+    #text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+</style>
+<form>
+    <span id="text"><a class="btn btn-success " href="///">Оформить</a></span>
+</form>
+</body>
 {% endblock %}
