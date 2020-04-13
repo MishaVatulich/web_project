@@ -11,48 +11,48 @@
     <title>Оформление</title>
 </head>
 <body>
-                            <h1>Заполните форму для заказа</h1>
-                            <div>
-                                <form class="login_form" method="post">
-                                    <input type="text" class="form-control" id="city" aria-describedby="emailHelp" placeholder="Введите название Вашего города" name="city">
-                                    <input type="text" class="form-control" id="address" placeholder="Введите Ваш адрес" name="address">
-                                    <div class="form-group">
-                                        <label for="Delivery">Выберите способ доставки</label>
-                                        <select class="form-control" id="Delivery" name="class">
-                                          <option>DPD (Курьером до Вашего дома) - 350 рублей - 5 дней</option>
-                                          <option>DPD (В пункт выдачи) - 300 рублей - 5 дней</option>
-                                          <option>Укрпошта (Курьером до Вашего дома) - 150 рублей - 7 дней</option>
-                                          <option>Укрпошта (В пункт выдачи) - 100 рублей - 7 дней</option>
-                                          <option>Почта России (Курьером до Вашего дома) - 250 рублей - 10 дней</option>
-                                          <option>Почта России (В пункт выдачи) - 200 рублей - 10 дней</option>
-                                        </select>
-                                     </div>
-                                    <div class="form-group">
-                                        <label for="package">Выберите упаковку</label>
-                                        <select class="form-control" id="package" name="class">
-                                          <option>Обычная - бесплатно</option>
-                                          <option>Плотная - 50 рублей</option>
-                                          <option>Подарочная - 100 рублей</option>
-                                        </select>
-                                     </div>
-                                    <div class="form-group">
-                                        <label for="pay">Выберите способ оплаты</label>
-                                        <select class="form-control" id="pay" name="class">
-                                          <option>Наличными (В пункте выдачи или курьеру)</option>
-                                          <option>Безналичный расчет (В пункте выдачи или курьеру)</option>
-                                        </select>
-                                     </div>
-                                    <div class="form-group">
-                                        <label for="inform">Пожелания к заказу</label>
-                                        <textarea class="form-control" id="inform" rows="3" name="about"></textarea>
-                                    </div>
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="acceptRules" name="accept">
-                                        <label class="form-check-label" for="acceptRules">Я подтверждаю правильность введенных данных</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Заказать</button>
-                                </form>
-                            </div>
+<h1>Заполните форму для заказа</h1>
+    <div>
+        <form class="login_form" method="post">
+            <input type="text" class="form-control" id="city" aria-describedby="emailHelp" placeholder="Введите название Вашего города" name="city">
+            <input type="text" class="form-control" id="address" placeholder="Введите Ваш адрес" name="address">
+            <div class="form-group">
+                <label for="Delivery">Выберите способ доставки</label>
+                <select class="form-control" id="Delivery" name="class">
+                    <option>DPD (Курьером до Вашего дома) - 350 рублей - 5 дней</option>
+                    <option>DPD (В пункт выдачи) - 300 рублей - 5 дней</option>
+                    <option>Укрпошта (Курьером до Вашего дома) - 150 рублей - 7 дней</option>
+                    <option>Укрпошта (В пункт выдачи) - 100 рублей - 7 дней</option>
+                    <option>Почта России (Курьером до Вашего дома) - 250 рублей - 10 дней</option>
+                    <option>Почта России (В пункт выдачи) - 200 рублей - 10 дней</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="package">Выберите упаковку</label>
+                <select class="form-control" id="package" name="class">
+                    <option>Обычная - бесплатно</option>
+                    <option>Плотная - 50 рублей</option>
+                    <option>Подарочная - 100 рублей</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pay">Выберите способ оплаты</label>
+                <select class="form-control" id="pay" name="class">
+                    <option>Наличными (В пункте выдачи или курьеру)</option>
+                    <option>Безналичный расчет (В пункте выдачи или курьеру)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inform">Пожелания к заказу</label>
+                <textarea class="form-control" id="inform" rows="3" name="about"></textarea>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="acceptRules" name="accept">
+                <label class="form-check-label" for="acceptRules">Я подтверждаю правильность введенных данных</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Заказать</button>
+        </form>
+    </div>
 </body>
 
 {% endblock %}
