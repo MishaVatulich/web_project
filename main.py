@@ -63,7 +63,7 @@ def logout():
 @app.route('/basket')
 @login_required
 def basket():
-    return "Ваша корзина"
+    return render_template('basket.html', title='Корзина')
 
 
 @app.route('/register', methods=['GET', 'POST'])
