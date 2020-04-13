@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Авторизация</h1>
+<style>
+    .colortext {
+     color: green;
+   }
+</style>
+<h1><span class="colortext">Авторизация</span></h1>
 <form action="" method="post">
     {{ form.hidden_tag() }}
     <p>
