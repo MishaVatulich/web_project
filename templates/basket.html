@@ -8,7 +8,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href={{fun}} />
+    <link rel="stylesheet" type="text/css" href={{fun}}/>
     <title>Корзина</title>
 </head>
 <body>
@@ -16,20 +16,41 @@
     .colortext {
      color: brown;
    }
+
+
 </style>
 <h1><span class="colortext">Ваша корзина</span></h1>
+{% if len_books == 0 %}
 <div class="alert alert-success" role="alert">
-  Здесь будут храниться все добавленные Вами товары
+    Здесь будут храниться все добавленные Вами товары
 </div>
-<style>
-    #text {
-  position: absolute;
-  bottom: 17%;
-  left: 50%;
-}
-</style>
+{% else %}
+{% for i in books %}
+<section>
+    <div class="border">
+        <div class="wrap">
+            <div class="product-wrap">
+                <a href=""><img src="static/img/{{i.id}}.jpg"></a>
+            </div>
+            {% if current_user.is_authenticated %}
+            <div class="loop-action">
+                <form>
+                    <span id=i.id><a class="loop-add-to-cart" href="/order/{{i.id}}">Оформить</a></span>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+        <div class="product-info">
+            <div class="stars"></div>
+            <h3 class="product-title">{{i.title}}</h3>
+            <div class="price">{{i.cost}}</div>
+        </div>
+    </div>
+</section>
+{% endfor %}
+{% endif %}
 <form>
-    <span id="text"><a class="btn btn-success " href="/order">Оформить</a></span>
+    <span id="text"><a class="btn btn-success " href="/order/0">Оформить все</a></span>
 </form>
 </body>
 {% endblock %}
