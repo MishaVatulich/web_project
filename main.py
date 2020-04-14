@@ -76,8 +76,8 @@ def order():
 @login_required
 def data():
     if request.method == 'GET':
-        return render_template('order.html', title='Заполнение данных', fun=url_for('static',
-                                                                                    filename='css/forbasket.css'))
+        return render_template('success.html', title='Заполнение данных', fun=url_for('static',
+                                                                                      filename='css/style.css'))
     elif request.method == 'POST':
         try:
             if request.form['accept'] == 'on':
@@ -94,9 +94,14 @@ def data():
                 session.add(order)
                 session.commit()
                 session.commit()
-                return redirect('/')
+                return redirect('/success')
         except Exception:
             return redirect('/data')
+
+
+@app.route('/success', methods=['GET', 'POST'])
+def success():
+    return render_template('success.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
