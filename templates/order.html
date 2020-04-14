@@ -8,17 +8,18 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href={{ord}} />
     <title>Оформление</title>
 </head>
 <body>
 <h1>Заполните форму для заказа</h1>
     <div>
         <form class="login_form" method="post">
-            <input type="text" class="form-control" id="city" aria-describedby="emailHelp" placeholder="Введите название Вашего города" name="city">
+            <input type="text" class="form-control" id="city" aria-describedby="city" placeholder="Введите название Вашего города" name="city">
             <input type="text" class="form-control" id="address" placeholder="Введите Ваш адрес" name="address">
             <div class="form-group">
-                <label for="Delivery">Выберите способ доставки</label>
-                <select class="form-control" id="Delivery" name="class">
+                <label for="delivery">Выберите способ доставки</label>
+                <select class="form-control" id="delivery" name="delivery">
                     <option>DPD (Курьером до Вашего дома) - 350 рублей - 5 дней</option>
                     <option>DPD (В пункт выдачи) - 300 рублей - 5 дней</option>
                     <option>Укрпошта (Курьером до Вашего дома) - 150 рублей - 7 дней</option>
@@ -29,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="package">Выберите упаковку</label>
-                <select class="form-control" id="package" name="class">
+                <select class="form-control" id="package" name="package">
                     <option>Обычная - бесплатно</option>
                     <option>Плотная - 50 рублей</option>
                     <option>Подарочная - 100 рублей</option>
@@ -37,17 +38,17 @@
             </div>
             <div class="form-group">
                 <label for="pay">Выберите способ оплаты</label>
-                <select class="form-control" id="pay" name="class">
+                <select class="form-control" id="pay" name="pay">
                     <option>Наличными (В пункте выдачи или курьеру)</option>
                     <option>Безналичный расчет (В пункте выдачи или курьеру)</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="inform">Пожелания к заказу</label>
-                <textarea class="form-control" id="inform" rows="3" name="about"></textarea>
+                <textarea class="form-control" id="inform" rows="3" name="inform"></textarea>
             </div>
             <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="acceptRules" name="accept">
+                <input type="checkbox" class="form-check-input" id="acceptRules" name="acception">
                 <label class="form-check-label" for="acceptRules">Я подтверждаю правильность введенных данных</label>
             </div>
             <button type="submit" class="btn btn-primary">Заказать</button>
