@@ -212,7 +212,7 @@ def add_to_basket(id):
     else:
         session = db_session.create_session()
         user = session.query(User).filter(User.id == current_user.id).first()
-        user.basket = user.basket + ' ' + str(id)
+        user.basket = str(id)
         session.commit()
     return redirect('/')
 
