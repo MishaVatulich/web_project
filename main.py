@@ -5,7 +5,6 @@ from wtforms.validators import DataRequired
 from data import db_session
 from data.users import User
 from data.books import Books
-from data.orders import Order
 from wtforms.fields.html5 import EmailField
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from os import abort
@@ -83,7 +82,44 @@ def data(id):
         return render_template('order.html', title='Заполнение данных', ord=url_for('static',
                                                                                     filename='css/forbasket.css'))
     elif request.method == 'POST':
-        return redirect('/order')
+        try:
+            if request.form['acception'] == 'on':
+                session = db_session.create_session()
+
+                server = smtplib.SMTP('smtp.mail.ru', 25)
+                server.connect("smtp.mail.ru", 587)
+                server.ehlo()
+                server.starttls()
+                server.ehlo()
+                server.login(LOGIN, PASSWORD)
+                mails = {}
+                if id != 0:
+                    book = session.query(Books).filter(Books.id == int(id)).first()
+                    mails[book.user.email] = [book.title]
+                else:
+                    for ids in current_user.basket.split():
+                        book = session.query(Books).filter(Books.id == int(ids)).first()
+                        trader = book.user.email
+                        if trader in mails:
+                            mails[trader].append(book.title)
+                        else:
+                            mails[trader] = [book.title]
+                for i in mails:
+                    to_addr = i
+                    from_addr = LOGIN
+                    body_text = "Python rules them all!"
+
+                    BODY = "\r\n".join((
+                        "From: %s" % from_addr,
+                        "To: %s" % to_addr,
+                        "Subject: %s" % "Заказ в магазине VIPBook",
+                        "",
+                        body_text
+                        ))
+                    server.sendmail(from_addr, to_addr, BODY)
+                server.quit()
+        except Exception:
+            return redirect('/order')
 
 
 @app.route('/success', methods=['GET', 'POST'])
@@ -167,7 +203,13 @@ def sell():
 @app.route('/add/<int:id>', methods=['GET', 'POST'])
 @login_required
 def add_to_basket(id):
-    if str(id) not in current_user.basket.split():
+    if current_user.basket is not None:
+        if str(id) not in current_user.basket.split():
+            session = db_session.create_session()
+            user = session.query(User).filter(User.id == current_user.id).first()
+            user.basket = user.basket + ' ' + str(id)
+            session.commit()
+    else:
         session = db_session.create_session()
         user = session.query(User).filter(User.id == current_user.id).first()
         user.basket = user.basket + ' ' + str(id)
