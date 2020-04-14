@@ -10,12 +10,16 @@ from wtforms.fields.html5 import EmailField
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from os import abort
 import os
+import smtplib
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Misha&Yarik_secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+LOGIN = 'mikhail.ktoto@mail.ru'
+PASSWORD = "TPRrutao3Y8-"
 
 
 class LoginForm(FlaskForm):
@@ -64,32 +68,22 @@ def logout():
 @app.route('/basket')
 @login_required
 def basket():
-    return render_template('basket.html', title='Корзина')
+    session = db_session.create_session()
+    books = []
+    for i in current_user.basket.split():
+        books.append(session.query(Books).filter(Books.id == int(i)).first())
+    return render_template('basket.html', title='Корзина', books=books, len_books=len(books),
+                           fun=url_for('static', filename='css/style2.css'))
 
 
-@app.route('/order', methods=['POST', 'GET'])
+@app.route('/order/<int:id>', methods=['POST', 'GET'])
 @login_required
-def data():
+def data(id):
     if request.method == 'GET':
         return render_template('order.html', title='Заполнение данных', ord=url_for('static',
                                                                                     filename='css/forbasket.css'))
     elif request.method == 'POST':
-        try:
-            if request.form['acception'] == 'on':
-                order = Order()
-                order.city = request.form['city']
-                order.address = request.form['address']
-                order.Delivery = request.form['delivery']
-                order.package = request.form['package']
-                order.pay = request.form['pay']
-                order.inform = request.form['inform']
-
-                session = db_session.create_session()
-                session.add(order)
-                session.commit()
-                return redirect('/success')
-        except Exception:
-            return redirect('/order')
+        return redirect('/order')
 
 
 @app.route('/success', methods=['GET', 'POST'])
@@ -173,10 +167,11 @@ def sell():
 @app.route('/add/<int:id>', methods=['GET', 'POST'])
 @login_required
 def add_to_basket(id):
-    session = db_session.create_session()
-    user = session.query(User).filter(User.id == current_user.id).first()
-    user.basket = user.basket + ' ' + str(id)
-    session.commit()
+    if str(id) not in current_user.basket.split():
+        session = db_session.create_session()
+        user = session.query(User).filter(User.id == current_user.id).first()
+        user.basket = user.basket + ' ' + str(id)
+        session.commit()
     return redirect('/')
 
 
