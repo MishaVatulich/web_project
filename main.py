@@ -13,7 +13,6 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Misha&Yarik_secret_key'
 login_manager = LoginManager()
@@ -120,7 +119,7 @@ e-mail покупателя: {}
 Упаковка: {}
 Способ оплаты: {}
 Пожелания к заказу: {}
-                    
+
 C уважением,
 Магазин VIPBook
                     '''.format(', '.join(mails[i]), current_user.email, request.form['city'], request.form['address'],
@@ -212,10 +211,16 @@ def sell():
 @app.route('/add/<int:id>', methods=['GET', 'POST'])
 @login_required
 def add_to_basket(id):
-    if str(id) not in current_user.basket.split():
+    if current_user.basket is not None:
+        if str(id) not in current_user.basket.split():
+            session = db_session.create_session()
+            user = session.query(User).filter(User.id == current_user.id).first()
+            user.basket = user.basket + ' ' + str(id)
+            session.commit()
+    else:
         session = db_session.create_session()
         user = session.query(User).filter(User.id == current_user.id).first()
-        user.basket = user.basket + ' ' + str(id)
+        user.basket = str(id)
         session.commit()
     return redirect('/')
 
