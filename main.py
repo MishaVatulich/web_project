@@ -76,9 +76,9 @@ def basket():
                            fun=url_for('static', filename='css/style2.css'))
 
 
-@app.route('/order/<int:id>', methods=['POST', 'GET'])
+@app.route('/order/<int:book_id>', methods=['POST', 'GET'])
 @login_required
-def data(id):
+def order(book_id):
     if request.method == 'GET':
         return render_template('order.html', title='Заполнение данных', ord=url_for('static',
                                                                                     filename='css/forbasket.css'))
@@ -94,8 +94,8 @@ def data(id):
                 server.ehlo()
                 server.login(LOGIN, PASSWORD)
                 mails = {}
-                if id != 0:
-                    book = session.query(Books).filter(Books.id == int(id)).first()
+                if book_id != 0:
+                    book = session.query(Books).filter(Books.id == book_id).first()
                     book.amount -= 1
                     mails[book.user.email] = [book.title]
                 else:
@@ -132,7 +132,7 @@ C уважением,
                 server.quit()
                 return redirect('/')
         except Exception:
-            return redirect('/order')
+            return redirect('/order/{}'.format(book_id))
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -166,12 +166,11 @@ def main_window():
                            fun=url_for('static', filename='css/style2.css'))
 
 
-@app.route('/profile')
-@login_required
-def profile():
+@app.route('/profile/<int:profile_id>')
+def profile(profile_id):
     session = db_session.create_session()
     return render_template('profile.html', title='Профиль',
-                           books=session.query(Books).filter(Books.user_id == current_user.id).all(),
+                           user=session.query(User).filter(User.id == profile_id).first(),
                            fun=url_for('static', filename='css/style2.css'))
 
 
@@ -208,35 +207,35 @@ def sell():
             return redirect('/sell')
 
 
-@app.route('/add/<int:id>', methods=['GET', 'POST'])
+@app.route('/add/<int:book_id>', methods=['GET', 'POST'])
 @login_required
-def add_to_basket(id):
+def add_to_basket(book_id):
     if current_user.basket is not None:
-        if str(id) not in current_user.basket.split():
+        if str(book_id) not in current_user.basket.split():
             session = db_session.create_session()
             user = session.query(User).filter(User.id == current_user.id).first()
-            user.basket = user.basket + ' ' + str(id)
+            user.basket = user.basket + ' ' + str(book_id)
             session.commit()
     else:
         session = db_session.create_session()
         user = session.query(User).filter(User.id == current_user.id).first()
-        user.basket = str(id)
+        user.basket = str(book_id)
         session.commit()
     return redirect('/')
 
 
-@app.route('/delete/<int:id>', methods=['GET', 'POST'])
+@app.route('/delete/<int:book_id>', methods=['GET', 'POST'])
 @login_required
-def books_delete(id):
+def books_delete(book_id):
     session = db_session.create_session()
-    book = session.query(Books).filter(Books.id == id, Books.user == current_user).first()
+    book = session.query(Books).filter(Books.id == book_id, Books.user == current_user).first()
     if book:
         session.delete(book)
         session.commit()
-        os.remove("static/img/" + str(id) + '.jpg')
+        os.remove("static/img/" + str(book_id) + '.jpg')
     else:
         abort(404)
-    return redirect('/profile')
+    return redirect('/profile/{}'.format(current_user.id))
 
 
 def main():
