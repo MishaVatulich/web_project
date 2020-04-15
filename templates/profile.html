@@ -14,22 +14,33 @@
 <body>
 <div class="container">
     <header class="clearfix">
+        {% if current_user.id == user.id %}
         <h1>Продаваемые Вами книги </h1>
+        {% else %}
+        <h1>Книги пользователя {{user.name}} </h1>
+        {% endif %}
         {% for i in user.books %}
         <section>
             <div class="border">
                 <div class="wrap">
                     <div class="product-wrap">
-                        <a href=""><img src="static/img/{{i.id}}.jpg"></a>
+                        <a href=""><img src="/static/img/{{i.id}}.jpg"></a>
                     </div>
+                    {% if current_user.id != user.id %}
+                    <div class="loop-action">
+                        <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="product-info">
                     <div class="stars"></div>
                     <h3 class="product-title">{{i.title}}</h3>
                     <div class="price">{{i.cost}}</div>
+                    {% if current_user.id == user.id %}
                     <div>
                         <a href="/delete/{{i.id}}" class="btn btn-danger">Удалить</a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </section>
