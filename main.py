@@ -136,11 +136,6 @@ C уважением,
             return redirect('/order')
 
 
-@app.route('/success', methods=['GET', 'POST'])
-def success():
-    return render_template('success.html')
-
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
