@@ -39,11 +39,54 @@
         {% endif %}
     </nav>
 </header>
+
+<style>
+    footer {
+        position: fixed; /* Фиксированное положение */
+        left: 0; bottom: 0; /* Левый нижний угол */
+        width: 100%;
+        color: #fff
+        float: left;
+        opacity: .5;
+    }
+    footer #rights {
+        float: right;
+        width: 50%;
+        text-align: right;
+        font-size: 1.1em;
+    }
+    footer #social {
+        float: left;
+        width: 50%;
+    }
+    footer #social img {
+        width: 27px;
+        height: 27px;
+        float: left;
+        margin-right: 5px;
+        margin-bottom: 0px;
+    }
+</style>
+<footer class="footer">
+    <div id="social">
+        <a href="https://vk.com/ua_franko" title="Разработчик 1" target="_blank">
+            <img src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/vk-128.png" alt="ВК 1"
+                 title="Разработчик: Ярослав Челомбитько">
+        </a>
+        <a href="https://vk.com/vatulich" title="Разработчик 2" target="_blank">
+            <img src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/vk-128.png" alt="ВК 2"
+                 title="Разработчик: Михаил Ватулич">
+        </a>
+    </div>
+    <div id="rights">
+        Все права защищены &copy; 2020
+    </div>
+</footer>
 <style>
           #sechead {
     position: relative;
     margin-bottom: -1px;
-	height: 50px;
+	height: 30px;
 	clear:both;
     left: 0; bottom: 0;
     padding: 10px;
