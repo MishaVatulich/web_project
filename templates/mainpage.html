@@ -12,30 +12,43 @@
     <title>{{title}}</title>
 </head>
 <body>
+<style type="text/css">
+   BODY { font: 10pt Arial, Helvetica, sans-serif; }
+   #catalog DIV {
+    margin: 0 0px 10px 0; /* Отступы */
+    text-align: center; /* Выравнивание по центру */
+    display: inline-block; /* Строчно-блочный элемент */
+    vertical-align: top; /* Выравнивание по верхнему краю */
+   }
+</style>
 <div class="container">
     <header class="clearfix">
         <h1>Наши книги </h1>
         {% for i in books %}
         {% if i.amount != 0 %}
-        <section>
-            <div class="border">
-                <div class="wrap">
-                    <div class="product-wrap">
-                        <a href=""><img src="static/img/{{i.id}}.jpg"></a>
+        <div class="row">
+            <div class="col-sm">
+                <section>
+                    <div class="border">
+                        <div class="wrap">
+                            <div class="product-wrap">
+                                <a href=""><img src="static/img/{{i.id}}.jpg"></a>
+                            </div>
+                            {% if current_user.is_authenticated %}
+                            <div class="loop-action">
+                                <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Название: {{i.title}}</h3>
+                            <h4 class="price">{{i.cost}} рублей</h4>
+                            <h5 class="amount">Кол-во: {{i.amount}}</h5>
+                            <h6 class="description">Описание: {{i.description}}</h6>
+                            <div class="genre">{{i.genre}}</div>
+                        </div>
                     </div>
-                    {% if current_user.is_authenticated %}
-                    <div class="loop-action">
-                        <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
-                    </div>
-                    {% endif %}
-                </div>
-                <div class="product-info">
-                    <div class="stars"></div>
-                    <h3 class="product-title">{{i.title}}</h3>
-                    <div class="price">{{i.cost}}</div>
-                </div>
-            </div>
-        </section>
+                </section>
         {% endif %}
         {% endfor %}
     </header>
