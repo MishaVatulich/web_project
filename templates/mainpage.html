@@ -20,6 +20,9 @@
     display: inline-block; /* Строчно-блочный элемент */
     vertical-align: top; /* Выравнивание по верхнему краю */
    }
+
+
+
 </style>
 <div class="container">
     <header class="clearfix">
@@ -42,6 +45,7 @@
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">Название: {{i.title}}</h3>
+                            <a class="btn btn-success" href="/profile">{{i.user.email}}</a>
                             <h4 class="price">{{i.cost}} рублей</h4>
                             <h5 class="amount">Кол-во: {{i.amount}}</h5>
                             <h6 class="description">Описание: {{i.description}}</h6>
@@ -49,6 +53,8 @@
                         </div>
                     </div>
                 </section>
+            </div>
+        </div>
         {% endif %}
         {% endfor %}
     </header>
