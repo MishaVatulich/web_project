@@ -10,6 +10,8 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from os import abort
 import os
 import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
 
 
 app = Flask(__name__)
@@ -95,29 +97,41 @@ def data(id):
                 mails = {}
                 if id != 0:
                     book = session.query(Books).filter(Books.id == int(id)).first()
+                    book.amount -= 1
                     mails[book.user.email] = [book.title]
                 else:
                     for ids in current_user.basket.split():
                         book = session.query(Books).filter(Books.id == int(ids)).first()
+                        book.amount -= 1
                         trader = book.user.email
                         if trader in mails:
                             mails[trader].append(book.title)
                         else:
                             mails[trader] = [book.title]
+                session.commit()
                 for i in mails:
-                    to_addr = i
-                    from_addr = LOGIN
-                    body_text = "Python rules them all!"
-
-                    BODY = "\r\n".join((
-                        "From: %s" % from_addr,
-                        "To: %s" % to_addr,
-                        "Subject: %s" % "Заказ в магазине VIPBook",
-                        "",
-                        body_text
-                        ))
-                    server.sendmail(from_addr, to_addr, BODY)
+                    msg = MIMEText('''Здравствуйте, вас приветствует магазин VIPBook.
+На нашем сайте были заказаны ваши книги: {}
+Информация о заказе:
+e-mail покупателя: {}
+Город: {}
+Адрес: {}
+Способ доставки: {}
+Упаковка: {}
+Способ оплаты: {}
+Пожелания к заказу: {}
+                    
+C уважением,
+Магазин VIPBook
+                    '''.format(', '.join(mails[i]), current_user.email, request.form['city'], request.form['address'],
+                               request.form['delivery'], request.form['package'], request.form['pay'],
+                               request.form['inform']), 'plain', 'utf-8')
+                    msg['subject'] = Header('Заказ в магазине VIPBook', 'utf-8')
+                    msg['from'] = LOGIN
+                    msg['to'] = 'vatulich@inbox.ru'
+                    server.sendmail(msg['from'], msg['to'], msg.as_string())
                 server.quit()
+                return redirect('/')
         except Exception:
             return redirect('/order')
 
@@ -203,16 +217,10 @@ def sell():
 @app.route('/add/<int:id>', methods=['GET', 'POST'])
 @login_required
 def add_to_basket(id):
-    if current_user.basket is not None:
-        if str(id) not in current_user.basket.split():
-            session = db_session.create_session()
-            user = session.query(User).filter(User.id == current_user.id).first()
-            user.basket = user.basket + ' ' + str(id)
-            session.commit()
-    else:
+    if str(id) not in current_user.basket.split():
         session = db_session.create_session()
         user = session.query(User).filter(User.id == current_user.id).first()
-        user.basket = str(id)
+        user.basket = user.basket + ' ' + str(id)
         session.commit()
     return redirect('/')
 
