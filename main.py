@@ -185,7 +185,6 @@ def sell():
                 book = Books()
                 book.title = request.form['title']
                 book.description = request.form['description']
-                book.contacts = request.form['contacts']
                 book.cost = request.form['cost']
                 book.amount = request.form['amount']
                 book.genre = request.form['genre']
@@ -236,6 +235,21 @@ def books_delete(book_id):
     else:
         abort(404)
     return redirect('/profile/{}'.format(current_user.id))
+
+
+@app.route('/change/<int:book_id>', methods=['GET', 'POST'])
+@login_required
+def books_change(book_id):
+    session = db_session.create_session()
+    book = session.query(Books).filter(Books.id == book_id, Books.user == current_user).first()
+    if request.method == 'GET':
+        return render_template('change.html', title='Изменение книги', fun=url_for('static', filename='css/style.css'),
+                               book=book)
+    elif request.method == 'POST':
+        book.amount = request.form['amount']
+        book.cost = request.form['cost']
+        session.commit()
+        return redirect('/profile/{}'.format(current_user.id))
 
 
 def main():
