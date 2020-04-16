@@ -26,11 +26,9 @@
                     <div class="product-wrap">
                         <a href=""><img src="/static/img/{{i.image}}.jpg"></a>
                     </div>
-                    {% if current_user.id != user.id %}
                     <div class="loop-action">
                         <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
                     </div>
-                    {% endif %}
                 </div>
                 <div class="product-info">
                     <div class="stars"></div>
