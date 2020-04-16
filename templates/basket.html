@@ -50,8 +50,10 @@
 </section>
 {% endfor %}
 {% endif %}
+{% if len_books != 0 %}
 <form>
     <span id="text"><a class="btn btn-success " href="/order/0">Оформить все</a></span>
 </form>
+{% endif %}
 </body>
 {% endblock %}
