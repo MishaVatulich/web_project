@@ -20,45 +20,47 @@
     display: inline-block; /* Строчно-блочный элемент */
     vertical-align: top; /* Выравнивание по верхнему краю */
    }
-
-
-
-
 </style>
 <div class="container">
-    <header class="clearfix">
+    <header class="clearfix"></header>
         <h1>Наши книги </h1>
-        {% for i in books %}
-        {% if i.amount != 0 %}
-        <div class="row">
-            <div class="col-sm">
-                <section>
-                    <div class="border">
-                        <div class="wrap">
-                            <div class="product-wrap">
-                                <a href=""><img src="static/img/{{i.image}}.jpg"></a>
+        <article>
+            {% for i in books %}
+            {% if i.amount != 0 %}
+            <div class="row">
+                <div class="col-sm">
+                    <section>
+                        <div class="border">
+                            <div class="wrap">
+                                <div class="product-wrap">
+                                    <a href=""><img src="static/img/{{i.image}}.jpg"></a>
+                                </div>
+                                {% if current_user.is_authenticated %}
+                                <div class="loop-action">
+                                    <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
+                                </div>
+                                {% endif %}
                             </div>
-                            {% if current_user.is_authenticated %}
-                            <div class="loop-action">
-                                <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
+                            <div class="product-info">
+                                <h3 class="product-title">Название: {{i.title}}</h3>
+                                <a class="btn btn-success" href="/profile/{{i.user.id}}">{{i.user.email}}</a>
+                                <h4 class="price">{{i.cost}} рублей</h4>
+                                <h5 class="amount">Кол-во: {{i.amount}}</h5>
+                                <h6 class="description">Описание: {{i.description}}</h6>
+                                <div class="genre">{{i.genre}}</div>
                             </div>
-                            {% endif %}
                         </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Название: {{i.title}}</h3>
-                            <a class="btn btn-success" href="/profile/{{i.user.id}}">{{i.user.email}}</a>
-                            <h4 class="price">{{i.cost}} рублей</h4>
-                            <h5 class="amount">Кол-во: {{i.amount}}</h5>
-                            <h6 class="description">Описание: {{i.description}}</h6>
-                            <div class="genre">{{i.genre}}</div>
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-    </header>
+            {% endif %}
+            {% endfor %}
+       </article>
+       <nav>
+        <p><a href="/">На главную</a></p>
+        <p><a href="/basket">В корзину</a></p>
+        <p><a href="/sell">Продать книгу</a></p>
+       </nav>
 </div>
 </body>
 {% endblock %}
