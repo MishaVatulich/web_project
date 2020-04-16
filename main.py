@@ -195,10 +195,10 @@ def sell():
                 session.add(book)
                 session.commit()
 
-                book.image = book.id
+                book.image = str(book.user_id) + '_' + book.created_date
 
                 img = request.files['photo'].read()
-                out = open("static/img/" + str(book.image) + ".jpg", "wb")
+                out = open("static/img/" + book.image + ".jpg", "wb")
                 out.write(img)
                 out.close
                 session.commit()
@@ -230,9 +230,9 @@ def books_delete(book_id):
     session = db_session.create_session()
     book = session.query(Books).filter(Books.id == book_id, Books.user == current_user).first()
     if book:
+        os.remove("static/img/" + str(book.user_id) + book.created_date + '.jpg')
         session.delete(book)
         session.commit()
-        os.remove("static/img/" + str(book_id) + '.jpg')
     else:
         abort(404)
     return redirect('/profile/{}'.format(current_user.id))
