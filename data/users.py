@@ -15,9 +15,9 @@ class User(SqlAlchemyBase, UserMixin):
     email = sqlalchemy.Column(sqlalchemy.String,
                               index=True, unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    created_date = sqlalchemy.Column(sqlalchemy.DateTime,
-                                     default=datetime.datetime.now)
-    basket = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    created_date = sqlalchemy.Column(sqlalchemy.String,
+                                     default=str(datetime.datetime.now())[:19])
+    basket = sqlalchemy.Column(sqlalchemy.String, nullable=True, default=' ')
     books = orm.relation("Books", back_populates='user')
 
     def set_password(self, password):
