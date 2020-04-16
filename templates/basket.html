@@ -18,6 +18,7 @@
    }
 
 
+
 </style>
 <h1><span class="colortext">Ваша корзина</span></h1>
 {% if len_books == 0 %}
@@ -30,7 +31,7 @@
     <div class="border">
         <div class="wrap">
             <div class="product-wrap">
-                <a href=""><img src="static/img/{{i.id}}.jpg"></a>
+                <a href=""><img src="static/img/{{i.image}}.jpg"></a>
             </div>
             {% if current_user.is_authenticated %}
             <div class="loop-action">
