@@ -1,5 +1,7 @@
 import sqlalchemy
 from sqlalchemy import orm
+import datetime
+
 
 from .db_session import SqlAlchemyBase
 
@@ -16,6 +18,8 @@ class Books(SqlAlchemyBase):
     user_id = sqlalchemy.Column(sqlalchemy.Integer,
                                 sqlalchemy.ForeignKey("users.id"))
     genre = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    image = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
+    image = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     amount = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
+    created_date = sqlalchemy.Column(sqlalchemy.String, nullable=True,
+                                     default='-'.join(str(datetime.datetime.now()).split(':')))
     user = orm.relation('User')
