@@ -2,7 +2,6 @@ import sqlalchemy
 from sqlalchemy import orm
 import datetime
 
-
 from .db_session import SqlAlchemyBase
 
 
@@ -13,7 +12,6 @@ class Books(SqlAlchemyBase):
                            primary_key=True, autoincrement=True)
     title = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     description = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    contacts = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     cost = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     user_id = sqlalchemy.Column(sqlalchemy.Integer,
                                 sqlalchemy.ForeignKey("users.id"))
