@@ -236,7 +236,12 @@ def books_delete(book_id):
     session = db_session.create_session()
     book = session.query(Books).filter(Books.id == book_id, Books.user == current_user).first()
     if book:
-        os.remove("static/img/" + str(book.user_id) + '_' + book.created_date + '.jpg')
+        os.remove("static/img/" + book.image + '.jpg')
+        for user in session.query(User).all():
+            if str(book_id) in user.basket.split():
+                user_basket = user.basket.split()
+                user_basket.remove(str(book_id))
+                user.basket = ' '.join(user_basket)
         session.delete(book)
         session.commit()
     else:
