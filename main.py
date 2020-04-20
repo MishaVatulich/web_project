@@ -159,11 +159,16 @@ def register():
     return render_template('register.html', title='Регистрация', form=form)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def main_window():
     session = db_session.create_session()
-    return render_template('mainpage.html', title='Главная', books=session.query(Books).all(),
-                           fun=url_for('static', filename='css/style2.css'))
+    if request.method == 'GET':
+        return render_template('mainpage.html', title='Главная', books=session.query(Books).all(),
+                               fun=url_for('static', filename='css/style2.css'))
+    elif request.method == 'POST':
+        return render_template('mainpage.html', title='Главная', books=session.query(Books).filter
+        (Books.title.like('%{}%'.format(request.form['search']))).all(),
+                               fun=url_for('static', filename='css/style2.css'))
 
 
 @app.route('/profile/<int:profile_id>')
@@ -229,7 +234,7 @@ def books_delete(book_id):
     session = db_session.create_session()
     book = session.query(Books).filter(Books.id == book_id, Books.user == current_user).first()
     if book:
-        os.remove("static/img/" + book.image + '.jpg')
+        os.remove("static/img/" + str(book.user_id) + '_' + book.created_date + '.jpg')
         session.delete(book)
         session.commit()
     else:
