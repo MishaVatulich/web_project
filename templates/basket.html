@@ -30,7 +30,7 @@
             <div class="product-wrap">
                 <a href=""><img src="static/img/{{i.image}}.jpg"></a>
             </div>
-            {% if current_user.is_authenticated %}
+            {% if i.amount != 0 %}
             <div class="loop-action">
                 <form>
                     <span id=i.id><a class="loop-add-to-cart" href="/order/{{i.id}}">Оформить</a></span>
@@ -38,6 +38,14 @@
             </div>
             {% endif %}
         </div>
+        <style>
+         .colortext_2 {
+         color: red; /* Красный цвет выделения */
+         }
+        </style>
+        {% if i.amount == 0 %}
+        <h3><span class="colortext_2">Нет на складе</span></h3>
+        {%endif%}
         <div class="product-info">
             <h3 class="product-title">Название: {{i.title}}</h3>
             <h4 class="price">{{i.cost}} рублей</h4>
