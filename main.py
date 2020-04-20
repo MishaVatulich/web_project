@@ -96,17 +96,19 @@ def order(book_id):
                 mails = {}
                 if book_id != 0:
                     book = session.query(Books).filter(Books.id == book_id).first()
-                    book.amount -= 1
-                    mails[book.user.email] = [book.title]
+                    if book.amount != 0:
+                        book.amount -= 1
+                        mails[book.user.email] = [book.title]
                 else:
                     for ids in current_user.basket.split():
                         book = session.query(Books).filter(Books.id == int(ids)).first()
-                        book.amount -= 1
-                        trader = book.user.email
-                        if trader in mails:
-                            mails[trader].append(book.title)
-                        else:
-                            mails[trader] = [book.title]
+                        if book.amount != 0:
+                            book.amount -= 1
+                            trader = book.user.email
+                            if trader in mails:
+                                mails[trader].append(book.title)
+                            else:
+                                mails[trader] = [book.title]
                 session.commit()
                 for i in mails:
                     msg = MIMEText('''Здравствуйте, вас приветствует магазин VIPBook.
