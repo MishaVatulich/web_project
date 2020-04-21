@@ -63,9 +63,12 @@
         }
 </style>
 {% if len_books != 0 %}
-<form id="flash"> 
+<form id="flash">
     <span id="text"><a class="btn btn-success " href="/order/0">Оформить все</a></span>
 </form>
+{% endif %}
+{% if len_books == 0 %}
+<a>Ваша корзина пуста!</a>
 {% endif %}
 </body>
 {% endblock %}
