@@ -79,14 +79,31 @@ def basket():
 @app.route('/order/<int:book_id>', methods=['POST', 'GET'])
 @login_required
 def order(book_id):
+    session = db_session.create_session()
     if request.method == 'GET':
+        if book_id != 0:
+            if session.query(Books).filter(Books.id == book_id).first().amount == 0:
+                return redirect('/')
+            else:
+                books = session.query(Books).filter(Books.id == book_id).first().title
+                cost = session.query(Books).filter(Books.id == book_id).first().cost
+        else:
+            books = []
+            cost = 0
+            for ids in current_user.basket.split():
+                book = session.query(Books).filter(Books.id == int(ids)).first()
+                if book.amount != 0:
+                    books.append(book.title)
+                    cost += book.cost
+            if len(books) == 0:
+                return redirect('/')
+            books = ', '.join(books)
         return render_template('order.html', title='Заполнение данных', ord=url_for('static',
-                                                                                    filename='css/forbasket.css'))
+                                                                                    filename='css/forbasket.css'),
+                               books=books, cost=cost)
     elif request.method == 'POST':
         try:
             if request.form['acception'] == 'on':
-                session = db_session.create_session()
-
                 server = smtplib.SMTP('smtp.mail.ru', 25)
                 server.connect("smtp.mail.ru", 587)
                 server.ehlo()
