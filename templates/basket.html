@@ -59,8 +59,14 @@
 {% endif %}
 <style>
     #flash {
-        margin-bottom: 25px
+        margin-bottom: 25px;
         }
+</style>
+<style>
+    #forma {
+        margin-top: 50%;
+        margin-right: 50%;
+    }
 </style>
 {% if len_books != 0 %}
 <form id="flash">
@@ -69,6 +75,9 @@
 {% endif %}
 {% if len_books == 0 %}
 <a>Ваша корзина пуста!</a>
+<form id="forma">
+    <span><a class="btn btn-success " href="/">К товарам</a></span>
+</form>
 {% endif %}
 </body>
 {% endblock %}
