@@ -57,8 +57,13 @@
 </section>
 {% endfor %}
 {% endif %}
+<style>
+    #flash {
+        margin-bottom: 25px
+        }
+</style>
 {% if len_books != 0 %}
-<form>
+<form id="flash"> 
     <span id="text"><a class="btn btn-success " href="/order/0">Оформить все</a></span>
 </form>
 {% endif %}
