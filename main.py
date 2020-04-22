@@ -138,7 +138,6 @@ e-mail покупателя: {}
 Упаковка: {}
 Способ оплаты: {}
 Пожелания к заказу: {}
-
 C уважением,
 Магазин VIPBook
                     '''.format(', '.join(mails[i]), current_user.email, request.form['city'], request.form['address'],
@@ -183,11 +182,27 @@ def main_window():
     session = db_session.create_session()
     if request.method == 'GET':
         return render_template('mainpage.html', title='Главная', books=session.query(Books).all(),
-                               fun=url_for('static', filename='css/style2.css'))
+                                fun=url_for('static', filename='css/style2.css'))
     elif request.method == 'POST':
-        return render_template('mainpage.html', title='Главная', books=session.query(Books).filter
-        (Books.title.like('%{}%'.format(request.form['search']))).all(),
-                               fun=url_for('static', filename='css/style2.css'))
+        try:
+            return render_template('mainpage.html', title='Главная', books=session.query(Books).filter
+            (Books.title.like('%{}%'.format(request.form['search']))).all(),
+                fun=url_for('static', filename='css/style2.css'))
+        except Exception:
+            min_cost = request.form['min_cost']
+            max_cost = request.form['max_cost']
+            if request.form['min_cost'] == '':
+                min_cost = 0
+            if request.form['max_cost'] == '':
+                max_cost = 10 ** 10
+            if request.form['filt_genre'] == 'Все':
+                return render_template('mainpage.html', title='Главная', books=session.query(Books).filter
+                    (Books.cost >= int(min_cost), Books.cost <= int(max_cost)).all(),
+                    fun=url_for('static', filename='css/style2.css'))
+            else:
+                return render_template('mainpage.html', title='Главная', books=session.query(Books).filter
+                    (Books.genre == request.form['filt_genre'], Books.cost >= int(min_cost),
+                    Books.cost <= int(max_cost)).all(), fun=url_for('static', filename='css/style2.css'))
 
 
 @app.route('/profile/<int:profile_id>')
