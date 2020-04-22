@@ -22,8 +22,8 @@
     color: #fff00;
     width: 100%;
    }
-</style>
-<style>
+    </style>
+    <style>
     #filt2 {
         width: 150px;
         height: 40px;
@@ -36,7 +36,11 @@
         margin-left: -155px;
         margin-top: 75px;
     }
-    #costs {
+    #min_cost {
+        width: 150px;
+        height: 40px;
+    }
+    #max_cost {
         width: 150px;
         height: 40px;
     }
@@ -44,45 +48,49 @@
         width: 150px;
         height: 40px;
         margin-left: -155px;
-        margin-top: 60px;
+        margin-top: 90px;
     }
     #margin {
         padding: 3px;
     }
-</style>
+    </style>
 
-<div id="sechead">
+    <div id="sechead">
         <form name="search" method="post">
             <p><input type="search" name="search" placeholder="Поиск по сайту">
-            <input type="submit" value="Найти"></p></form>
+                <input type="submit" value="Найти"></p>
+        </form>
         <div class="form-group" id="filt2">
             <p><label for="filt_genre"><big><big><big><big>Фильтры</big></big></big></big></label>
                 <a id="margin"><big><big>Выберите Жанр</big></big></a>
-            <select class="form-control" id="filt_genre" name="filt_genre">
-                <option></option>
-                <option>Научная фантастика</option>
-                <option>Детская</option>
-                <option>Роман</option>
-                <option>Школьная литература</option>
-                <option>Научная литература</option>
-                <option>Образование</option>
-                <option>Деловая литература</option>
-                <option>Наука и техника</option>
-                <option>Психология</option>
-                <option>Философия и религия</option>
-                <option>Искусство</option>
-                <option>Книги на иностранных языках</option>
-            </select></p>
+                <select class="form-control" id="filt_genre" name="filt_genre">
+                    <option>Все</option>
+                    <option>Научная фантастика</option>
+                    <option>Детская</option>
+                    <option>Роман</option>
+                    <option>Школьная литература</option>
+                    <option>Научная литература</option>
+                    <option>Образование</option>
+                    <option>Деловая литература</option>
+                    <option>Наука и техника</option>
+                    <option>Психология</option>
+                    <option>Философия и религия</option>
+                    <option>Искусство</option>
+                    <option>Книги на иностранных языках</option>
+                </select></p>
         </div>
         <div class="form-group" id="filt3">
-            <p><label></label>
-                <input type="number" name="costs" id="costs" placeholder="Введите цену книги"></p>
+            <p>
+                <a><big><big>Цена книги</big></big></a>
+                <input type="number" name="min_cost" id="min_cost" placeholder="Минимальная цена">
+                <input type="number" name="max_cost" id="max_cost" placeholder="Максимальная цена">
+            </p>
         </div>
         <div class="form-group" id="filtbutt">
             <p><label></label>
-                <span><a class="btn btn-success " href="/">Подтвердить</a></span></p>
+                <span><a class="btn btn-success " href="/">Отфильтровать</a></span></p>
         </div>
-</div>
+    </div>
 </head>
 <body>
 <style type="text/css">
@@ -101,40 +109,40 @@
 </style>
 <div class="container">
     <header class="clearfix"></header>
-        <h1 id="h1">Наши книги </h1>
-        <article>
-            {% for i in books %}
-            {% if i.amount != 0 %}
-            <div class="row">
-                <div class="col-sm">
-                    <section>
-                        <div class="border">
-                            <div class="wrap">
-                                <div class="product-wrap">
-                                    <a href=""><img src="static/img/{{i.image}}.jpg"></a>
-                                </div>
-                                {% if current_user.is_authenticated %}
-                                <div class="loop-action">
-                                    <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
-                                </div>
-                                {% endif %}
+    <h1 id="h1">Наши книги </h1>
+    <article>
+        {% for i in books %}
+        {% if i.amount != 0 %}
+        <div class="row">
+            <div class="col-sm">
+                <section>
+                    <div class="border">
+                        <div class="wrap">
+                            <div class="product-wrap">
+                                <a href=""><img src="static/img/{{i.image}}.jpg"></a>
                             </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Название: {{i.title}}</h3>
-                                <a class="btn btn-success" href="/profile/{{i.user.id}}">{{i.user.email}}</a>
-                                <h4 class="price">{{i.cost}} рублей</h4>
-                                <h5 class="amount">Кол-во: {{i.amount}}</h5>
-                                <h6 class="description">Описание: {{i.description}}</h6>
-                                <div class="genre">{{i.genre}}</div>
+                            {% if current_user.is_authenticated %}
+                            <div class="loop-action">
+                                <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
                             </div>
+                            {% endif %}
                         </div>
-                    </section>
-                </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Название: {{i.title}}</h3>
+                            <a class="btn btn-success" href="/profile/{{i.user.id}}">{{i.user.email}}</a>
+                            <h4 class="price">{{i.cost}} рублей</h4>
+                            <h5 class="amount">Кол-во: {{i.amount}}</h5>
+                            <h6 class="description">Описание: {{i.description}}</h6>
+                            <div class="genre">{{i.genre}}</div>
+                        </div>
+                    </div>
+                </section>
             </div>
-            {% endif %}
-            {% endfor %}
-       </article>
-        <style>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </article>
+    <style>
             #forfoot {
                 margin-top: 20px;
                 width: 100%;
@@ -158,13 +166,13 @@
                 margin-right: 20px;
                 margin-top: 10px;
             }
-        </style>
-        <nav id="forfoot">
-        <p> <a id="fortext" href="/">На главную</a>
+    </style>
+    <nav id="forfoot">
+        <p><a id="fortext" href="/">На главную</a>
             <a id="second" href="/basket">В корзину</a>
             <a id="third" href="/sell">Продать книгу</a>
         </p>
-       </nav>
+    </nav>
 </div>
 </body>
 {% endblock %}
