@@ -22,6 +22,8 @@
     color: #fff00;
     width: 100%;
    }
+
+
     </style>
     <style>
     #filt2 {
@@ -53,6 +55,8 @@
     #margin {
         padding: 3px;
     }
+
+
     </style>
 
     <div id="sechead">
@@ -60,38 +64,40 @@
             <p><input type="search" name="search" placeholder="Поиск по сайту">
                 <input type="submit" value="Найти"></p>
         </form>
-        <div class="form-group" id="filt2">
-            <p><label for="filt_genre"><big><big><big><big>Фильтры</big></big></big></big></label>
-                <a id="margin"><big><big>Выберите Жанр</big></big></a>
-                <select class="form-control" id="filt_genre" name="filt_genre">
-                    <option>Все</option>
-                    <option>Научная фантастика</option>
-                    <option>Детская</option>
-                    <option>Роман</option>
-                    <option>Школьная литература</option>
-                    <option>Научная литература</option>
-                    <option>Образование</option>
-                    <option>Деловая литература</option>
-                    <option>Наука и техника</option>
-                    <option>Психология</option>
-                    <option>Философия и религия</option>
-                    <option>Искусство</option>
-                    <option>Книги на иностранных языках</option>
-                </select></p>
-        </div>
-        <div class="form-group" id="filt3">
-            <p>
-                <a><big><big>Цена книги</big></big></a>
-                <input type="number" name="min_cost" id="min_cost" placeholder="Минимальная цена">
-                <input type="number" name="max_cost" id="max_cost" placeholder="Максимальная цена">
-            </p>
-        </div>
-        <div class="form-group" id="filtbutt">
-            <p><label></label>
-                <span><a class="btn btn-success " href="/">Отфильтровать</a></span></p>
-        </div>
-    </div>
-</head>
+        <form name="filt" method="post">
+            <div class="form-group" id="filt2">
+                <p><label for="filt_genre"><big><big><big><big>Фильтры</big></big></big></big></label>
+                    <a id="margin"><big><big>Выберите Жанр</big></big></a>
+                    <select class="form-control" id="filt_genre" name="filt_genre">
+                        <option>Все</option>
+                        <option>Научная фантастика</option>
+                        <option>Детская</option>
+                        <option>Роман</option>
+                        <option>Школьная литература</option>
+                        <option>Научная литература</option>
+                        <option>Образование</option>
+                        <option>Деловая литература</option>
+                        <option>Наука и техника</option>
+                        <option>Психология</option>
+                        <option>Философия и религия</option>
+                        <option>Искусство</option>
+                        <option>Книги на иностранных языках</option>
+                    </select></p>
+            </div>
+            <div class="form-group" id="filt3">
+                <p>
+                    <a><big><big>Цена книги</big></big></a>
+                    <input type="number" name="min_cost" id="min_cost" placeholder="Минимальная цена">
+                    <input type="number" name="max_cost" id="max_cost" placeholder="Максимальная цена">
+                </p>
+            </div>
+            <div class="form-group" id="filtbutt">
+                <p><label></label>
+                    <input type="submit" value="Отфильтровать"></p>
+            </div>
+        </form>
+    </div>>
+        </head>
 <body>
 <style type="text/css">
    BODY { font: 10pt Arial, Helvetica, sans-serif; }
@@ -101,11 +107,15 @@
     display: inline-block; /* Строчно-блочный элемент */
     vertical-align: top; /* Выравнивание по верхнему краю */
    }
+
+
 </style>
 <style>
     #h1 {
         text-align: center;
     }
+
+
 </style>
 <div class="container">
     <header class="clearfix"></header>
@@ -166,6 +176,8 @@
                 margin-right: 20px;
                 margin-top: 10px;
             }
+
+
     </style>
     <nav id="forfoot">
         <p><a id="fortext" href="/">На главную</a>
