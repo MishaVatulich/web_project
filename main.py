@@ -281,6 +281,25 @@ def books_delete(book_id):
     return redirect('/profile/{}'.format(current_user.id))
 
 
+@app.route('/deletes/<int:book_id>', methods=['GET', 'POST'])
+@login_required
+def books_deletes(book_id):
+    session = db_session.create_session()
+    book = session.query(Books).filter(Books.id == book_id, Books.user == current_user).first()
+    if book:
+        os.remove("static/img/" + book.image + '.jpg')
+        for user in session.query(User).all():
+            if str(book_id) in user.profile.split():
+                user_profile = user.profile.split()
+                user_profile.remove(str(book_id))
+                user.profile = ' '.join(user_profile)
+        session.delete(book)
+        session.commit()
+    else:
+        abort(404)
+    return redirect('/basket/{}'.format(current_user.id))
+
+
 @app.route('/change/<int:book_id>', methods=['GET', 'POST'])
 @login_required
 def books_change(book_id):
