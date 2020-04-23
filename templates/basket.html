@@ -16,8 +16,11 @@
     .colortext {
      color: brown;
    }
+   #third {
+       text-align: center;
+   }
 </style>
-<h1><span class="colortext">Ваша корзина</span></h1>
+<h1><span class="colortext" id="third">Ваша корзина</span></h1>
 {% if len_books == 0 %}
 <div class="alert alert-success" role="alert">
     Здесь будут храниться все добавленные Вами товары
@@ -48,6 +51,7 @@
         {%endif%}
         <div class="product-info">
             <h3 class="product-title">Название: {{i.title}}</h3>
+            <a href="/deletes/{{i.id}}" class="btn btn-danger">Удалить</a>
             <h4 class="price">{{i.cost}} рублей</h4>
             <h5 class="amount">Кол-во: {{i.amount}}</h5>
             <h6 class="description">Описание: {{i.description}}</h6>
@@ -67,16 +71,22 @@
         margin-top: 50%;
         margin-right: 50%;
     }
+    #one {
+        text-align: center;
+    }
+    #two {
+        text-align: center;
+    }
 </style>
 {% if len_books != 0 %}
 <form id="flash">
-    <span id="text"><a class="btn btn-success " href="/order/0">Оформить все</a></span>
+    <span id="text"><a class="btn btn-success" id="one" href="/order/0">Оформить все</a></span>
 </form>
 {% endif %}
 {% if len_books == 0 %}
 <a>Ваша корзина пуста!</a>
 <form id="forma">
-    <span><a class="btn btn-success " href="/">К товарам</a></span>
+    <span><a class="btn btn-success" href="/">К товарам</a></span>
 </form>
 {% endif %}
 </body>
