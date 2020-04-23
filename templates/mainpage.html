@@ -127,6 +127,10 @@
                             <div class="loop-action">
                                 <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
                             </div>
+                            {% else %}
+                            <div class="loop-action">
+                                <a href="/login" class="loop-add-to-cart">В корзину</a>
+                            </div>
                             {% endif %}
                         </div>
                         <div class="product-info">
@@ -171,8 +175,13 @@
     </style>
     <nav id="forfoot">
         <p><a id="fortext" href="/">На главную</a>
-            <a id="second" href="/basket">В корзину</a>
-            <a id="third" href="/sell">Продать книгу</a>
+            {% if current_user.is_authenticated %}
+                <a id="second" href="/basket">В корзину</a>
+                <a id="third" href="/sell">Продать книгу</a>
+            {% else %}
+                <a id="second_2" href="/login">В корзину</a>
+                <a id="third_2" href="/login">Продать книгу</a>
+            {% endif %}
         </p>
     </nav>
 </div>
