@@ -115,8 +115,12 @@
     <header class="clearfix"></header>
     <h1 id="h1">Наши книги </h1>
     <article>
+        {%  if len_books == 0 %}
+            <div class="alert alert-success" role="alert">
+                Нет товаров, удовлетворяющих поиску
+            </div>
+        {%  endif %}
         {% for i in books %}
-        {% if i.amount != 0 %}
         <div class="row">
             <div class="col-sm">
                 <section>
@@ -147,7 +151,6 @@
                 </section>
             </div>
         </div>
-        {% endif %}
         {% endfor %}
     </article>
     <style>
