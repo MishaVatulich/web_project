@@ -181,13 +181,13 @@ def register():
 def main_window():
     session = db_session.create_session()
     if request.method == 'GET':
-        return render_template('mainpage.html', title='Главная', books=session.query(Books).all(),
-                                fun=url_for('static', filename='css/style2.css'))
+        return render_template('mainpage.html', title='Главная',
+                               books=session.query(Books).filter(Books.amount != 0).all(),
+                               fun=url_for('static', filename='css/style2.css'))
     elif request.method == 'POST':
         try:
-            return render_template('mainpage.html', title='Главная', books=session.query(Books).filter
-            (Books.title.like('%{}%'.format(request.form['search']))).all(),
-                fun=url_for('static', filename='css/style2.css'))
+            books = session.query(Books).filter(Books.title.like('%{}%'.format(request.form['search'])),
+                                                Books.amount != 0).all()
         except Exception:
             min_cost = request.form['min_cost']
             max_cost = request.form['max_cost']
@@ -196,13 +196,14 @@ def main_window():
             if request.form['max_cost'] == '':
                 max_cost = 10 ** 10
             if request.form['filt_genre'] == 'Все':
-                return render_template('mainpage.html', title='Главная', books=session.query(Books).filter
-                    (Books.cost >= int(min_cost), Books.cost <= int(max_cost)).all(),
-                    fun=url_for('static', filename='css/style2.css'))
+                books = session.query(Books).filter(Books.cost >= int(min_cost), Books.cost <= int(max_cost),
+                                                    Books.amount != 0).all()
             else:
-                return render_template('mainpage.html', title='Главная', books=session.query(Books).filter
-                    (Books.genre == request.form['filt_genre'], Books.cost >= int(min_cost),
-                    Books.cost <= int(max_cost)).all(), fun=url_for('static', filename='css/style2.css'))
+                books = session.query(Books).filter(Books.genre == request.form['filt_genre'],
+                                                    Books.cost >= int(min_cost), Books.cost <= int(max_cost),
+                                                    Books.amount != 0).all()
+        return render_template('mainpage.html', title='Главная', books=books, len_books=len(books),
+                               fun=url_for('static', filename='css/style2.css'))
 
 
 @app.route('/profile/<int:profile_id>')
