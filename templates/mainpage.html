@@ -26,15 +26,15 @@
     <style>
     #filt2 {
         width: 150px;
-        height: 40px;
+        height: 60px;
         margin-left: -155px;
-        margin-top: 20 px;
+        margin-top: 2px;
     }
     #filt3 {
         width: 150px;
-        height: 20px;
+        height: 30px;
         margin-left: -155px;
-        margin-top: 75px;
+        margin-top: 92px;
     }
     #min_cost {
         width: 150px;
@@ -55,17 +55,32 @@
     #margin {
         padding: 3px;
     }
+    #searches {
+        width: 150px;
+        height: 20px;
+        margin-left: -175px;
+        margin-top: 60px;
+
+    }
+    #ids {
+        margin-top: 30px;
+    }
+    #form {
+        margin-top: 64px;
+    }
+    #butt {
+        margin-top: 5px;
+    }
     </style>
 
-    <div id="sechead">
-        <form name="search" method="post">
-            <p><input type="search" name="search" placeholder="Поиск по сайту">
-                <input type="submit" value="Найти"></p>
-        </form>
-        <form name="filt" method="post">
+    <div>
+
+        <form name="filt" method="post" id="form">
             <div class="form-group" id="filt2">
-                <p><label for="filt_genre"><big><big><big><big> Поиск </big></big></big></big></label>
-                    <a id="margin"><big><big>Выберите Жанр</big></big></a>
+                <p id="butt"><input type="search" name="search" placeholder="Поиск по сайту">
+                    <input type="submit" value="Найти"></p>
+                <p><label for="filt_genre" id="ids"><big><big><big><big></big></big></big></big></label>
+                    <a><big><big>Выберите Жанр</big></big></a>
                     <select class="form-control" id="filt_genre" name="filt_genre">
                         <option>Все</option>
                         <option>Научная фантастика</option>
@@ -91,7 +106,7 @@
             </div>
             <div class="form-group" id="filtbutt">
                 <p><label></label>
-                    <input type="submit" class="btn btn-primary" value="Найти книгу"></p>
+                    <input type="submit" value="Найти книгу"></p>
             </div>
         </form>
     </div>>
@@ -109,18 +124,15 @@
 <style>
     #h1 {
         text-align: center;
+        margin-top: -375px;
     }
 </style>
 <div class="container">
     <header class="clearfix"></header>
     <h1 id="h1">Наши книги </h1>
     <article>
-        {%  if len_books == 0 %}
-            <div class="alert alert-success" role="alert">
-                Нет товаров, удовлетворяющих поиску
-            </div>
-        {%  endif %}
         {% for i in books %}
+        {% if i.amount != 0 %}
         <div class="row">
             <div class="col-sm">
                 <section>
@@ -132,10 +144,6 @@
                             {% if current_user.is_authenticated %}
                             <div class="loop-action">
                                 <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
-                            </div>
-                            {% else %}
-                            <div class="loop-action">
-                                <a href="/login" class="loop-add-to-cart">В корзину</a>
                             </div>
                             {% endif %}
                         </div>
@@ -151,6 +159,7 @@
                 </section>
             </div>
         </div>
+        {% endif %}
         {% endfor %}
     </article>
     <style>
