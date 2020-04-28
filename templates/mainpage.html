@@ -196,30 +196,35 @@
         {% endfor %}
     </article>
     <style>
-            #forfoot {
+            .forfoot {
                 margin-top: 20px;
                 width: 100%;
                 margin-bottom: 18px;
                 height: 50px;
                 text-align: center;
+                opacity: 2;
             }
-            #fortext {
+            forfoot #fortext {
                 text-align: center;
                 margin-right: 20px;
                 margin-top; 10px;
             }
-            #second {
+            forfoot #second {
                 text-align: right;
                 margin-right: 20px;
                 margin-top: 10px;
 
             }
-            #third {
+            forfoot #third {
                 text-align: left;
                 margin-right: 20px;
                 margin-top: 10px;
             }
-            #forfoot img {
+            forfoot #soc {
+                float: left;
+                width: 50%;
+            }
+            forfoot #soc img {
                 width: 15px;
                 height: 15px;
                 margin-right: 5px;
@@ -227,21 +232,33 @@
                 margin-left: 50%;
                 margin-right: 50%;
             }
+            #tor {
+                width: 35px;
+                height: 35px;
+            }
+            #sector {
+               width: 35px;
+               height: 35px;
+            }
+            #thitor {
+                width: 35px;
+                height: 35px;
+            }
     </style>
-    <nav id="forfoot">
-        <div><a href="/" title="На главную" target="_blank">
+    <nav class="forfoot">
+        <div id="soc"><a href="/" title="На главную" target="_blank">
             <img src="https://cdn2.iconfinder.com/data/icons/25-free-ui-icons/40/home-128.png" alt="На главную"
-                 title="На главную">
+                 title="На главную" id="tor">
             </a>
             <a href="/basket" title="В корзину" target="_blank">
             <img src="https://cdn2.iconfinder.com/data/icons/ecommerce-tiny-line/64/basket_ecommerce_shop-128.png" alt="В корзину"
-                 title="В корзину">
+                 title="В корзину" id="sector">
             </a>
             <a href="/sell" title="Продать книгу" target="_blank">
             <img src="https://cdn2.iconfinder.com/data/icons/3_Minicons-Free-_Pack/45/sell.png" alt="Продать книгу"
-                 title="Продать книгу">
-            </a>
-        </div>
+                 title="Продать книгу" id="thitor">
+            </a></div>
+
     </nav>
 </div>
 </body>
