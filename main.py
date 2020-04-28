@@ -185,24 +185,24 @@ def main_window():
                                books=session.query(Books).filter(Books.amount != 0).all(),
                                fun=url_for('static', filename='css/style2.css'))
     elif request.method == 'POST':
-        try:
-            books = session.query(Books).filter(Books.title.like('%{}%'.format(request.form['search'])),
+        min_cost = request.form['min_cost']
+        max_cost = request.form['max_cost']
+        if request.form['min_cost'] == '':
+            min_cost = 0
+        if request.form['max_cost'] == '':
+            max_cost = 10 ** 10
+        if request.form['filt_genre'] == 'Все':
+            books = session.query(Books).filter(Books.cost >= int(min_cost), Books.cost <= int(max_cost),
                                                 Books.amount != 0).all()
-        except Exception:
-            min_cost = request.form['min_cost']
-            max_cost = request.form['max_cost']
-            if request.form['min_cost'] == '':
-                min_cost = 0
-            if request.form['max_cost'] == '':
-                max_cost = 10 ** 10
-            if request.form['filt_genre'] == 'Все':
-                books = session.query(Books).filter(Books.cost >= int(min_cost), Books.cost <= int(max_cost),
-                                                    Books.amount != 0).all()
-            else:
-                books = session.query(Books).filter(Books.genre == request.form['filt_genre'],
-                                                    Books.cost >= int(min_cost), Books.cost <= int(max_cost),
-                                                    Books.amount != 0).all()
-        return render_template('mainpage.html', title='Главная', books=books, len_books=len(books),
+        else:
+            books = session.query(Books).filter(Books.genre == request.form['filt_genre'],
+                                                Books.cost >= int(min_cost), Books.cost <= int(max_cost),
+                                                Books.amount != 0).all()
+        find_books = []
+        for i in books:
+            if request.form['search'].lower() in i.title.lower():
+                find_books.append(i)
+        return render_template('mainpage.html', title='Главная', books=find_books, len_books=len(books),
                                fun=url_for('static', filename='css/style2.css'))
 
 
