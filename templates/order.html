@@ -22,10 +22,14 @@
 </div>
 <div>
     <form class="login_form" method="post">
-        <label>Вы покупаете книги: {{books}}</label>
-        <input type="text" class="form-control" id="city" aria-describedby="city"
+        {%  for i in books %}
+        <label>{{i.title}}</label>
+        <input type="number" min="1" max="{{i.amount}}" class="form-control" required id="{{i.id}}" placeholder="Колличество экзэмпляров" name="{{i.id}}">
+        {%  endfor %}
+        <label>Ваш адрес</label>
+        <input type="text" class="form-control" id="city" required aria-describedby="city"
                placeholder="Введите название Вашего города" name="city">
-        <input type="text" class="form-control" id="address" placeholder="Введите Ваш адрес" name="address">
+        <input type="text" class="form-control" id="address" required placeholder="Введите Ваш адрес" name="address">
         <div class="form-group">
             <label for="delivery">Выберите способ доставки</label>
             <select class="form-control" id="delivery" name="delivery">
@@ -59,9 +63,6 @@
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="acceptRules" name="acception">
             <label class="form-check-label" for="acceptRules">Я подтверждаю правильность введенных данных</label>
-        </div>
-        <div>
-            <label>Cумма заказа(без учета доставки и упаковки) {{cost}} рублей</label>
         </div>
         <button type="submit" class="btn btn-primary">Заказать</button>
     </form>
