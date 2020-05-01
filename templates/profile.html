@@ -12,6 +12,12 @@
     <title>{{title}}</title>
 </head>
 <body>
+<style>
+    #fromm {
+        margin-top: 50%;
+        margin-right: 50%;
+    }
+</style>
 <div class="container">
     <header class="clearfix">
         <p>
@@ -21,6 +27,11 @@
         <h6>{{user.email}} </h6>
         {% if current_user.id == user.id %}
         <h1>Продаваемые Вами книги </h1>
+        {% if len_books == 0 %}
+            <h3><big>Вы не выставили ни одной книги на продажу</big></h3>
+            <form id="fromm">
+                <span><a class="btn btn-success" href="/sell">Продать книгу</a></span>
+            </form>
         {% else %}
         <h1>Книги пользователя {{user.name}} </h1>
         {% endif %}
@@ -34,10 +45,6 @@
                     {% if current_user.is_authenticated %}
                     <div class="loop-action">
                         <a href="/add/{{i.id}}" class="loop-add-to-cart">В корзину</a>
-                    </div>
-                    {%else%}
-                    <div class="loop-action">
-                        <a href="/login" class="loop-add-to-cart">В корзину</a>
                     </div>
                     {% endif %}
                 </div>
