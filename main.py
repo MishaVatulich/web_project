@@ -312,7 +312,7 @@ def books_change(book_id):
 
 def main():
     db_session.global_init("db/database.sqlite")
-    app.run(port=8080, host='127.0.0.1')
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
 
 
 if __name__ == '__main__':
