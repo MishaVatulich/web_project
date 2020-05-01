@@ -27,7 +27,7 @@
         <h6>Адрес электронной почты пользователя: {{user.email}} </h6>
         {% if current_user.id == user.id %}
         <h1>Продаваемые Вами книги </h1>
-        {% if user.books == 0 %}
+        {% if len_user.books == 0 %}
             <h3><big>Вы не выставили ни одной книги на продажу</big></h3>
             <form id="fromm">
                 <span><a class="btn btn-success" href="/sell">Продать книгу</a></span>
