@@ -85,22 +85,18 @@ def order(book_id):
             if session.query(Books).filter(Books.id == book_id).first().amount == 0:
                 return redirect('/')
             else:
-                books = session.query(Books).filter(Books.id == book_id).first().title
-                cost = session.query(Books).filter(Books.id == book_id).first().cost
+                books = [session.query(Books).filter(Books.id == book_id).first()]
         else:
             books = []
-            cost = 0
             for ids in current_user.basket.split():
                 book = session.query(Books).filter(Books.id == int(ids)).first()
                 if book.amount != 0:
-                    books.append(book.title)
-                    cost += book.cost
+                    books.append(book)
             if len(books) == 0:
                 return redirect('/')
-            books = ', '.join(books)
         return render_template('order.html', title='Заполнение данных', ord=url_for('static',
                                                                                     filename='css/forbasket.css'),
-                               books=books, cost=cost)
+                               books=books)
     elif request.method == 'POST':
         try:
             if request.form['acception'] == 'on':
@@ -113,19 +109,18 @@ def order(book_id):
                 mails = {}
                 if book_id != 0:
                     book = session.query(Books).filter(Books.id == book_id).first()
-                    if book.amount != 0:
-                        book.amount -= 1
-                        mails[book.user.email] = [book.title]
+                    book.amount -= int(request.form[str(book.id)])
+                    mails[book.user.email] = [book.title + '(x' + request.form[str(book.id)] + ')']
                 else:
                     for ids in current_user.basket.split():
                         book = session.query(Books).filter(Books.id == int(ids)).first()
                         if book.amount != 0:
-                            book.amount -= 1
+                            book.amount -= int(request.form[str(book.id)])
                             trader = book.user.email
                             if trader in mails:
-                                mails[trader].append(book.title)
+                                mails[trader].append(book.title + '(x' + request.form[str(book.id)] + ')')
                             else:
-                                mails[trader] = [book.title]
+                                mails[trader] = [book.title + '(x' + request.form[str(book.id)] + ')']
                 session.commit()
                 for i in mails:
                     msg = MIMEText('''Здравствуйте, вас приветствует магазин VIPBook.
