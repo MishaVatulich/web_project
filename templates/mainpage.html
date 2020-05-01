@@ -57,13 +57,25 @@
     #search_title {
         margin-top: 5px;
     }
+    #w1 {
+        width: 150px;
+    }
+    #w2 {
+        width: 150px;
+    }
+    #body {
+        background: #d1c7a1;
+        color: #000; /* Цвет текста */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     </style>
     <div>
         <form name="filt" method="post" id="form">
             <div class="form-group" id="filt2">
                 <a><big><big>Поиск книги</big></big></a>
-                <p id="search_title"><input type="search" name="search_title" placeholder="Название книги">
-                <p id="search_name"><input type="search" name="search_name" placeholder="Имя продавца">
+                <p id="search_title"><input type="search" name="search_title" id="w1" placeholder="Название книги">
+                <p id="search_name"><input type="search" name="search_name" id="w2" placeholder="Имя продавца">
                 <p><label for="filt_genre" id="ids"><big><big><big><big></big></big></big></big></label>
                     <a><big><big>Выберите Жанр</big></big></a>
                     <select class="form-control" id="filt_genre" name="filt_genre">
@@ -112,7 +124,7 @@
         margin-top: -415px;
     }
 </style>
-<div class="container">
+<div class="container" id="body">
     <header class="clearfix"></header>
     <h1 id="h1">Наши книги </h1>
     <article>
@@ -195,15 +207,18 @@
                 width: 35px;
                 height: 35px;
                 margin-right: 15px;
+                text-align: center;
             }
             #sector {
                width: 35px;
                height: 35px;
                margin-right: 15px;
+               text-align: center;
             }
             #thitor {
                 width: 35px;
                 height: 35px;
+                text-align: center;
             }
             #sector2 {
                width: 35px;
