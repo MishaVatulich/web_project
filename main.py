@@ -312,7 +312,7 @@ def books_change(book_id):
 
 def main():
     db_session.global_init("db/database.sqlite")
-    app.run(port=8080, host='127.0.0.1')
+    app.run(port=8080, host='vipbook.herokuapp.com')
 
 
 if __name__ == '__main__':
