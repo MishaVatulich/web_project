@@ -21,13 +21,13 @@
 <div class="container">
     <header class="clearfix">
         <p>
-        <h2>{{user.name}} </h2>
+        <h2>Имя пользователя: {{user.name}} </h2>
         {{user.created_date}}
         </p>
-        <h6>{{user.email}} </h6>
+        <h6>Адрес электронной почты пользователя: {{user.email}} </h6>
         {% if current_user.id == user.id %}
         <h1>Продаваемые Вами книги </h1>
-        {% if len_books == 0 %}
+        {% if user.books == 0 %}
             <h3><big>Вы не выставили ни одной книги на продажу</big></h3>
             <form id="fromm">
                 <span><a class="btn btn-success" href="/sell">Продать книгу</a></span>
