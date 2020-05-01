@@ -143,7 +143,7 @@ C уважением,
                                request.form['inform']), 'plain', 'utf-8')
                     msg['subject'] = Header('Заказ в магазине VIPBook', 'utf-8')
                     msg['from'] = LOGIN
-                    msg['to'] = 'vatulich@inbox.ru'
+                    msg['to'] = i
                     server.sendmail(msg['from'], msg['to'], msg.as_string())
                 server.quit()
                 return redirect('/')
@@ -311,7 +311,6 @@ def books_change(book_id):
 def main():
     db_session.global_init("db/database.sqlite")
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
-
 
 if __name__ == '__main__':
     main()
