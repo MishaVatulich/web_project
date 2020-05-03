@@ -203,6 +203,13 @@ def main_window():
             if request.form['search_title'].lower() in i.title.lower() and \
                request.form['search_name'].lower() in i.user.name.lower():
                 find_books.append(i)
+        if request.form['sort'] == 'Цена по убыванию':
+            find_books.sort(key=lambda book: book.cost)
+            find_books.reverse()
+        elif request.form['sort'] == 'Цена по возрастанию':
+            find_books.sort(key=lambda book: book.cost)
+        elif request.form['sort'] == 'Сначала новые':
+            find_books.reverse()
         return render_template('mainpage.html', title='Главная', books=find_books, len_books=len(find_books),
                                book_title=request.form['search_title'], book_name=request.form['search_name'],
                                book_min=request.form['min_cost'], book_max=request.form['max_cost'],
