@@ -12,8 +12,10 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
+import books_api
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 app.config['SECRET_KEY'] = 'Misha&Yarik_secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -311,8 +313,9 @@ def books_change(book_id):
 
 def main():
     db_session.global_init("db/database.sqlite")
+    app.register_blueprint(books_api.blueprint)
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
-    
+
 
 if __name__ == '__main__':
     main()
