@@ -75,8 +75,8 @@
         <form name="filt" method="post" id="form">
             <div class="form-group" id="filt2">
                 <a><big><big>Поиск книги</big></big></a>
-                <p id="search_title"><input type="search" name="search_title" id="w1" placeholder="Название книги">
-                <p id="search_name"><input type="search" name="search_name" id="w2" placeholder="Имя продавца">
+                <p id="search_title"><input type="search" name="search_title" id="w1" placeholder="Название книги" value="{{book_title}}">
+                <p id="search_name"><input type="search" name="search_name" id="w2" placeholder="Имя продавца" value="{{book_name}}">
                 <p><label for="filt_genre" id="ids"><big><big><big><big></big></big></big></big></label>
                     <a><big><big>Выберите Жанр</big></big></a>
                     <select class="form-control" id="filt_genre" name="filt_genre">
@@ -98,8 +98,8 @@
             <div class="form-group" id="filt3">
                 <p>
                     <a><big><big>Цена книги</big></big></a>
-                    <input type="number" name="min_cost" id="min_cost" placeholder="Минимальная цена">
-                    <input type="number" name="max_cost" id="max_cost" placeholder="Максимальная цена">
+                    <input type="number" name="min_cost" id="min_cost" placeholder="Минимальная цена" value="{{book_min}}">
+                    <input type="number" name="max_cost" id="max_cost" placeholder="Максимальная цена" value="{{book_max}}">
                 </p>
             </div>
             <div class="form-group" id="filtbutt">
