@@ -201,7 +201,7 @@ def main_window():
             if request.form['search_title'].lower() in i.title.lower() and \
                request.form['search_name'].lower() in i.user.name.lower():
                 find_books.append(i)
-        return render_template('mainpage.html', title='Главная', books=find_books, len_books=len(books),
+        return render_template('mainpage.html', title='Главная', books=find_books, len_books=len(find_books),
                                fun=url_for('static', filename='css/style2.css'))
 
 
