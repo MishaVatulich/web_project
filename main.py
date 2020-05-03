@@ -208,8 +208,9 @@ def main_window():
 @app.route('/profile/<int:profile_id>')
 def profile(profile_id):
     session = db_session.create_session()
+    user = session.query(User).filter(User.id == profile_id).first()
     return render_template('profile.html', title='Профиль',
-                           user=session.query(User).filter(User.id == profile_id).first(),
+                           user=user, len_books=len(user.books),
                            fun=url_for('static', filename='css/style2.css'))
 
 
@@ -311,6 +312,7 @@ def books_change(book_id):
 def main():
     db_session.global_init("db/database.sqlite")
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+    
 
 if __name__ == '__main__':
     main()
