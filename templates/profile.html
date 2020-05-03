@@ -24,17 +24,20 @@
         <h2>Имя пользователя: {{user.name}} </h2>
         {{user.created_date}}
         </p>
-        <h6>Адрес электронной почты пользователя: {{user.email}} </h6>
+        <h6>e-mail: {{user.email}} </h6>
         {% if current_user.id == user.id %}
         <h1>Продаваемые Вами книги </h1>
         {% if len_books == 0 %}
-            <h3><big>Вы не выставили ни одной книги на продажу</big></h3>
+            <h5>Вы не выставили ни одной книги на продажу</h5>
             <form id="fromm">
                 <span><a class="btn btn-success" href="/sell">Продать книгу</a></span>
             </form>
         {% endif %}
         {% else %}
         <h1>Книги пользователя {{user.name}} </h1>
+        {% if len_books == 0 %}
+            <h5>Этот пользователь не выставил ни одной книги на продажу</h5>
+        {% endif %}
         {% endif %}
         {% for i in user.books %}
         <section>
