@@ -213,7 +213,11 @@
                 height: 35px;
             }
     </style>
+{%  if len_books == 0 %}
+<nav class="forfoot" style="margin-top: 310px">
+    {%else%}
     <nav class="forfoot">
+        {%  endif %}
         <div id="soc"><a href="/" title="На главную" target="_blank">
             <img src="https://cdn2.iconfinder.com/data/icons/25-free-ui-icons/40/home-128.png" alt="На главную"
                  title="На главную" id="tor">
