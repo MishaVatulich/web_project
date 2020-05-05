@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href={{ord}}/>
     <title>Оформление</title>
 </head>
-<body>
+<body id="body-up">
 <style>
    .text {
     text-align:  center;
@@ -24,7 +24,7 @@
     <form class="login_form" method="post">
         {%  for i in books %}
         <label>{{i.title}}</label>
-        <input type="number" min="1" max="{{i.amount}}" class="form-control" required id="{{i.id}}" placeholder="Колличество экзэмпляров" name="{{i.id}}">
+        <input type="number" min="1" max="{{i.amount}}" class="form-control" required id="{{i.id}}" placeholder="Количество экзэмпляров" name="{{i.id}}">
         {%  endfor %}
         <label>Ваш адрес</label>
         <input type="text" class="form-control" id="city" required aria-describedby="city"
