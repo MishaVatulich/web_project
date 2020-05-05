@@ -71,6 +71,25 @@
         background-size: cover;
     }
     </style>
+    <style type="text/css">
+   BODY { font: 10pt Arial, Helvetica, sans-serif; }
+   #catalog DIV {
+    margin: 0 0px 0px 0; /* Отступы */
+    text-align: center; /* Выравнивание по центру */
+    display: inline-block; /* Строчно-блочный элемент */
+    vertical-align: top; /* Выравнивание по верхнему краю */
+   }
+</style>
+<style>
+    #h1 {
+        text-align: center;
+        margin-top: -500px;
+    }
+    #btnfix {
+        margin-top: 50%;
+        margin-right: 50%;
+    }
+</style>
     <div>
         <form name="filt" method="post" id="form">
             <div class="form-group" id="filt2">
@@ -113,36 +132,42 @@
             </div>
             <div class="form-group" id="filtbutt">
                 <p><label></label>
-                    <input class="btn btn-primary" type="submit" value="Найти книгу"></p>
+                    <input class="btn btn-primary" type="submit" value="Найти книгу">
+                    <div>
+                    {% if len_books == 0 %}
+                    <div class="alert alert-success" role="alert">
+                        Нет товаров, удовлетворяющих поиску
+                    </div>
+                {% endif %}</div>
+                </p>
             </div>
         </form>
     </div>
 </head>
-<body>
-<style type="text/css">
-   BODY { font: 10pt Arial, Helvetica, sans-serif; }
-   #catalog DIV {
-    margin: 0 0px 0px 0; /* Отступы */
-    text-align: center; /* Выравнивание по центру */
-    display: inline-block; /* Строчно-блочный элемент */
-    vertical-align: top; /* Выравнивание по верхнему краю */
-   }
-</style>
 <style>
-    #h1 {
-        text-align: center;
-        margin-top: -415px;
+    #b-up {
+        background: #f7f6f2 url(https://avatars.mds.yandex.net/get-pdb/1623506/29ac3087-3064-47ef-9fad-aabc43972b3e/s1200);
+        color: #000;
+        background-repeat: repeat;
     }
 </style>
+<body id="b-up">
 <div class="container" id="body" style="width: 500px;">
     <header class="clearfix"></header>
+    <div>
     <h1 id="h1">Наши книги </h1>
-    <article>
-        {% if len_books == 0 %}
-        <div class="alert alert-success" role="alert">
-            Нет товаров, удовлетворяющих поиску
+      {% if len_books == 0 %}
+    <div class="alert alert-success" role="alert">
+            Ни одной книги нет на продаже
         </div>
-        {% endif %}
+        <div class="alert alert-success" role="alert">
+            Скорее выставляйте книгу на продажу!
+        </div>
+        <form id="btnfix">
+            <span><a class="btn btn-success" href="/sell">Выставить на продажу!</a></span>
+        </form>
+        {% endif %}</div>
+    <article>
         {% for i in books %}
         <div class="row">
             <div class="col-sm">
@@ -178,4 +203,5 @@
     </article>
 </div>
 </body>
+
 {% endblock %}
