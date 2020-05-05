@@ -13,6 +13,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 import books_api
+import random
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -245,7 +246,7 @@ def sell():
                 session.add(book)
                 session.commit()
 
-                book.image = str(book.user_id) + '_' + book.created_date
+                book.image = str(random.random()) + "-" + str(random.randint(1, 9999999)) + "-" + book.created_date
 
                 img = request.files['photo'].read()
                 out = open("static/img/" + book.image + ".jpg", "wb")
