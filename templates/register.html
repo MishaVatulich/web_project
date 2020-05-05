@@ -5,7 +5,14 @@
     .colortext {
      color: red; /* Красный цвет выделения */
    }
+   #body-up {
+        background: #f7f6f2 url(https://avatars.mds.yandex.net/get-pdb/1623506/29ac3087-3064-47ef-9fad-aabc43972b3e/s1200);
+        color: #000;
+        background-repeat: repeat;
+        background-size: cover;
+    }
 </style>
+<body id="body-up">
 <h1><span class="colortext">Регистрация</span></h1>
 <form action="" method="post">
     {{ form.hidden_tag() }}
@@ -49,4 +56,5 @@
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
     {{message}}
 </form>
+</body>
 {% endblock %}
