@@ -14,11 +14,11 @@
     #body-up {
         background: #f7f6f2 url(https://avatars.mds.yandex.net/get-pdb/1623506/29ac3087-3064-47ef-9fad-aabc43972b3e/s1200);
         color: #000;
-        background-repeat: repeat-x, repeat-y;
+        background-repeat: repeat;
         background-size: cover;
     }
 </style>
-<body id="body-up">
+<body>
 <header>
     <style>
    nav {
@@ -215,7 +215,7 @@
     </style>
 {%  if len_books == 0 %}
 <nav class="forfoot" style="margin-top: 310px">
-    {%else%}
+    {% else %}
     <nav class="forfoot">
         {%  endif %}
         <div id="soc"><a href="/" title="На главную" target="_blank">
