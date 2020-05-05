@@ -132,14 +132,7 @@
             </div>
             <div class="form-group" id="filtbutt">
                 <p><label></label>
-                    <input class="btn btn-primary" type="submit" value="Найти книгу">
-                    <div>
-                    {% if len_books == 0 %}
-                    <div class="alert alert-success" role="alert">
-                        Нет товаров, удовлетворяющих поиску
-                    </div>
-                {% endif %}</div>
-                </p>
+                    <input class="btn btn-primary" type="submit" value="Найти книгу"></p>
             </div>
         </form>
     </div>
@@ -154,20 +147,13 @@
 <body id="b-up">
 <div class="container" id="body" style="width: 500px;">
     <header class="clearfix"></header>
-    <div>
     <h1 id="h1">Наши книги </h1>
-      {% if len_books == 0 %}
-    <div class="alert alert-success" role="alert">
-            Ни одной книги нет на продаже
-        </div>
-        <div class="alert alert-success" role="alert">
-            Скорее выставляйте книгу на продажу!
-        </div>
-        <form id="btnfix">
-            <span><a class="btn btn-success" href="/sell">Выставить на продажу!</a></span>
-        </form>
-        {% endif %}</div>
     <article>
+        {% if len_books == 0 %}
+        <div class="alert alert-success" role="alert">
+            Нет товаров, удовлетворяющих поиску
+        </div>
+        {% endif %}
         {% for i in books %}
         <div class="row">
             <div class="col-sm">
