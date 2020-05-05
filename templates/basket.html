@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href={{fun}}/>
     <title>Корзина</title>
 </head>
-<body>
+<body id="body-up">
 <style>
     .colortext {
      color: brown;
@@ -20,7 +20,7 @@
        text-align: center;
    }
 </style>
-<h1><span class="colortext" id="third">Ваша корзина</span></h1>
+<h1 id="third"><span class="colortext">Ваша корзина</span></h1>
 {% if len_books == 0 %}
 <div class="alert alert-success" role="alert">
     Здесь будут храниться все добавленные Вами товары
@@ -51,7 +51,7 @@
         {%endif%}
         <div class="product-info">
             <h3 class="product-title">Название: {{i.title}}</h3>
-            <a href="/basket_delete/{{i.id}}" class="btn btn-danger">Удалить из корзины</a>
+            <a href="/deletes/{{i.id}}" class="btn btn-danger">Удалить</a>
             <h4 class="price">{{i.cost}} рублей</h4>
             <h5 class="amount">Кол-во: {{i.amount}}</h5>
             <h6 class="description">Описание: {{i.description}}</h6>
@@ -73,6 +73,13 @@
     }
     #one {
         text-align: center;
+        position: absolute;
+        margin-left: 500px;
+        margin-right: 250px;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+        margin-top: -400px;
+        margin-bottom: 20px;
     }
     #two {
         text-align: center;
@@ -80,7 +87,7 @@
 </style>
 {% if len_books != 0 %}
 <form id="flash">
-    <span id="text"><a class="btn btn-success" id="one" href="/order/0">Оформить все</a></span>
+    <span id="one"><a class="btn btn-success" href="/order/0">Оформить все</a></span>
 </form>
 {% endif %}
 {% if len_books == 0 %}
