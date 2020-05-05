@@ -6,6 +6,7 @@
      color: green;
    }
 </style>
+<body id="body-up">
 <h1><span class="colortext">Авторизация</span></h1>
 <form action="" method="post">
     {{ form.hidden_tag() }}
@@ -31,4 +32,5 @@
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
     <div>{{ message }}</div>
 </form>
+</body>
 {% endblock %}
