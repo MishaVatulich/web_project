@@ -210,7 +210,7 @@ def main_window():
             find_books.sort(key=lambda book: book.cost)
         elif request.form['sort'] == 'Сначала новые':
             find_books.reverse()
-        return render_template('mainpage.html', title='Главная', books=find_books, len_books=len(find_books),
+        return render_template('mainpage.html', title='Главная', books=find_books, len_book=len(find_books),
                                book_title=request.form['search_title'], book_name=request.form['search_name'],
                                book_min=request.form['min_cost'], book_max=request.form['max_cost'],
                                fun=url_for('static', filename='css/style2.css'))
