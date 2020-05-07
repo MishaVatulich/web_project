@@ -8,17 +8,17 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href={{fun}}/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
    .text {
     text-align:  center;
    }
     </style>
-    <div class="text">
-        <p><big><big><big><big>Редактировать информацию</big></big></big></big></p>
-    </div>
 </head>
 <body id="body-up">
+<div class="text">
+    <p><big><big><big><big>Редактировать информацию</big></big></big></big></p>
+</div>
 <div>
     <form class="login_form" method="post" enctype="multipart/form-data">
         <input type="text" class="form-control" readonly value='{{book.title}}' id="title" placeholder="Название книги"
