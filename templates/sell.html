@@ -8,7 +8,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href={{fun}}/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
    .text {
     text-align:  center;
@@ -16,13 +16,12 @@
    #margins {
         margin-bottom: 30px;
    }
-
     </style>
-    <div class="text">
-        <p><big><big><big><big>Продажа книги</big></big></big></big></p>
-    </div>
 </head>
 <body id="body-up">
+<div class="text">
+    <p><big><big><big><big>Продажа книги</big></big></big></big></p>
+</div>
 <div id="margins">
     <form class="login_form" method="post" enctype="multipart/form-data">
         <input type="text" class="form-control" id="title" placeholder="Название книги" required name="title">
@@ -36,7 +35,8 @@
         </div>
         <div class="form-group">
             <label for="amount">Количество товара</label>
-            <input type="number" min="1" class="form-control" required id="amount" placeholder="Количество товара" name="amount">
+            <input type="number" min="1" class="form-control" required id="amount" placeholder="Количество товара"
+                   name="amount">
         </div>
         <div class="form-group">
             <label for="genre">Жанр Вашей книги</label>
