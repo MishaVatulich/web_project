@@ -8,7 +8,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href={{fun}}/>
+    <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='css/style2.css') }}">
     <title>{{title}}</title>
     <style>
     #filt2 {
@@ -70,17 +70,14 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
-    </style>
-    <style type="text/css">
-   BODY { font: 10pt Arial, Helvetica, sans-serif; }
+
+    BODY { font: 10pt Arial, Helvetica, sans-serif; }
    #catalog DIV {
     margin: 0 0px 0px 0; /* Отступы */
     text-align: center; /* Выравнивание по центру */
     display: inline-block; /* Строчно-блочный элемент */
     vertical-align: top; /* Выравнивание по верхнему краю */
    }
-</style>
-<style>
     #h1 {
         text-align: center;
         margin-top: -500px;
@@ -89,62 +86,64 @@
         margin-top: 50%;
         margin-right: 50%;
     }
-</style>
-    <div>
-        <form name="filt" method="post" id="form">
-            <div class="form-group" id="filt2">
-                <a><big><big>Поиск книги</big></big></a>
-                <p id="search_title"><input type="search" name="search_title" id="w1" placeholder="Название книги" value="{{book_title}}">
-                <p id="search_name"><input type="search" name="search_name" id="w2" placeholder="Имя продавца" value="{{book_name}}">
-                <p><label for="filt_genre" id="ids"><big><big><big><big></big></big></big></big></label>
-                    <a><big><big>Выберите Жанр</big></big></a>
-                    <select class="form-control" id="filt_genre" name="filt_genre">
-                        <option>Все</option>
-                        <option>Научная фантастика</option>
-                        <option>Детская</option>
-                        <option>Роман</option>
-                        <option>Школьная литература</option>
-                        <option>Научная литература</option>
-                        <option>Образование</option>
-                        <option>Деловая литература</option>
-                        <option>Наука и техника</option>
-                        <option>Психология</option>
-                        <option>Философия и религия</option>
-                        <option>Искусство</option>
-                        <option>Книги на иностранных языках</option>
-                    </select></p>
-            </div>
-            <div class="form-group" id="filt3">
-                <p>
-                    <a><big><big>Цена книги</big></big></a>
-                    <input type="number" name="min_cost" id="min_cost" placeholder="Минимальная цена" value="{{book_min}}">
-                    <input type="number" name="max_cost" id="max_cost" placeholder="Максимальная цена" value="{{book_max}}">
-                </p>
-                <p>
-                    <a><big><big>Сортировка</big></big></a>
-                    <select class="form-control" id="sort" name="sort">
-                        <option>Цена по возрастанию</option>
-                        <option>Цена по убыванию</option>
-                        <option>Сначала новые</option>
-                        <option>Сначала старые</option>
-                    </select>
-                </p>
-            </div>
-            <div class="form-group" id="filtbutt">
-                <p><label></label>
-                    <input class="btn btn-primary" type="submit" value="Найти книгу"></p>
-            </div>
-        </form>
-    </div>
-</head>
-<style>
     #b-up {
         background: #f7f6f2 url(https://avatars.mds.yandex.net/get-pdb/1623506/29ac3087-3064-47ef-9fad-aabc43972b3e/s1200);
         color: #000;
         background-repeat: repeat;
     }
-</style>
+    </style>
+</head>
 <body id="b-up">
+<div>
+    <form name="filt" method="post" id="form">
+        <div class="form-group" id="filt2">
+            <a><big><big>Поиск книги</big></big></a>
+            <p id="search_title"><input type="search" name="search_title" id="w1" placeholder="Название книги"
+                                        value="{{book_title}}">
+            <p id="search_name"><input type="search" name="search_name" id="w2" placeholder="Имя продавца"
+                                       value="{{book_name}}">
+            <p><label for="filt_genre" id="ids"><big><big><big><big></big></big></big></big></label>
+                <a><big><big>Выберите Жанр</big></big></a>
+                <select class="form-control" id="filt_genre" name="filt_genre">
+                    <option>Все</option>
+                    <option>Научная фантастика</option>
+                    <option>Детская</option>
+                    <option>Роман</option>
+                    <option>Школьная литература</option>
+                    <option>Научная литература</option>
+                    <option>Образование</option>
+                    <option>Деловая литература</option>
+                    <option>Наука и техника</option>
+                    <option>Психология</option>
+                    <option>Философия и религия</option>
+                    <option>Искусство</option>
+                    <option>Книги на иностранных языках</option>
+                </select></p>
+        </div>
+        <div class="form-group" id="filt3">
+            <p>
+                <a><big><big>Цена книги</big></big></a>
+                <input type="number" name="min_cost" id="min_cost" placeholder="Минимальная цена"
+                       value="{{book_min}}">
+                <input type="number" name="max_cost" id="max_cost" placeholder="Максимальная цена"
+                       value="{{book_max}}">
+            </p>
+            <p>
+                <a><big><big>Сортировка</big></big></a>
+                <select class="form-control" id="sort" name="sort">
+                    <option>Цена по возрастанию</option>
+                    <option>Цена по убыванию</option>
+                    <option>Сначала новые</option>
+                    <option>Сначала старые</option>
+                </select>
+            </p>
+        </div>
+        <div class="form-group" id="filtbutt">
+            <p><label></label>
+                <input class="btn btn-primary" type="submit" value="Найти книгу"></p>
+        </div>
+    </form>
+</div>
 <div class="container" id="body" style="width: 500px;">
     <header class="clearfix"></header>
     <h1 id="h1">Наши книги </h1>
