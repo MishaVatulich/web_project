@@ -8,24 +8,25 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href={{ord}}/>
+    <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='css/style.css') }}">
     <title>Оформление</title>
-</head>
-<body id="body-up">
-<style>
+    <style>
    .text {
     text-align:  center;
    }
-</style>
+    </style>
+</head>
+<body id="body-up">
 <div class="text">
     <p><big><big><big><big>Заполните форму для заказа</big></big></big></big></p>
 </div>
 <div>
     <form class="login_form" method="post">
-        {%  for i in books %}
+        {% for i in books %}
         <label>{{i.title}}</label>
-        <input type="number" min="1" max="{{i.amount}}" class="form-control" required id="{{i.id}}" placeholder="Количество экзэмпляров" name="{{i.id}}">
-        {%  endfor %}
+        <input type="number" min="1" max="{{i.amount}}" class="form-control" required id="{{i.id}}"
+               placeholder="Количество экзэмпляров" name="{{i.id}}">
+        {% endfor %}
         <label>Ваш адрес</label>
         <input type="text" class="form-control" id="city" required aria-describedby="city"
                placeholder="Введите название Вашего города" name="city">
