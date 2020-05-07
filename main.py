@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request, redirect, render_template
+from flask import Flask, request, redirect, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
@@ -75,8 +75,7 @@ def basket():
     books = []
     for i in current_user.basket.split():
         books.append(session.query(Books).filter(Books.id == int(i)).first())
-    return render_template('basket.html', title='Корзина', books=books, len_books=len(books),
-                           fun=url_for('static', filename='css/style2.css'))
+    return render_template('basket.html', title='Корзина', books=books, len_books=len(books))
 
 
 @app.route('/order/<int:book_id>', methods=['POST', 'GET'])
@@ -97,9 +96,7 @@ def order(book_id):
                     books.append(book)
             if len(books) == 0:
                 return redirect('/')
-        return render_template('order.html', title='Заполнение данных', ord=url_for('static',
-                                                                                    filename='css/forbasket.css'),
-                               books=books)
+        return render_template('order.html', title='Заполнение данных', books=books)
     elif request.method == 'POST':
         try:
             if request.form['acception'] == 'on':
@@ -183,8 +180,7 @@ def main_window():
     session = db_session.create_session()
     if request.method == 'GET':
         return render_template('mainpage.html', title='Главная',
-                               books=session.query(Books).filter(Books.amount != 0).all(),
-                               fun=url_for('static', filename='css/style2.css'))
+                               books=session.query(Books).filter(Books.amount != 0).all())
     elif request.method == 'POST':
         min_cost = request.form['min_cost']
         max_cost = request.form['max_cost']
@@ -213,24 +209,21 @@ def main_window():
             find_books.reverse()
         return render_template('mainpage.html', title='Главная', books=find_books, len_book=len(find_books),
                                book_title=request.form['search_title'], book_name=request.form['search_name'],
-                               book_min=request.form['min_cost'], book_max=request.form['max_cost'],
-                               fun=url_for('static', filename='css/style2.css'))
+                               book_min=request.form['min_cost'], book_max=request.form['max_cost'])
 
 
 @app.route('/profile/<int:profile_id>')
 def profile(profile_id):
     session = db_session.create_session()
     user = session.query(User).filter(User.id == profile_id).first()
-    return render_template('profile.html', title='Профиль',
-                           user=user, len_books=len(user.books),
-                           fun=url_for('static', filename='css/style2.css'))
+    return render_template('profile.html', title='Профиль', user=user, len_books=len(user.books))
 
 
 @app.route('/sell', methods=['POST', 'GET'])
 @login_required
 def sell():
     if request.method == 'GET':
-        return render_template('sell.html', title='Продажа книги', fun=url_for('static', filename='css/style.css'))
+        return render_template('sell.html', title='Продажа книги')
     elif request.method == 'POST':
         try:
             if request.form['accept'] == 'on':
@@ -312,8 +305,7 @@ def books_change(book_id):
     session = db_session.create_session()
     book = session.query(Books).filter(Books.id == book_id, Books.user == current_user).first()
     if request.method == 'GET':
-        return render_template('change.html', title='Изменение книги', fun=url_for('static', filename='css/style.css'),
-                               book=book)
+        return render_template('change.html', title='Изменение книги', book=book)
     elif request.method == 'POST':
         book.amount = request.form['amount']
         book.cost = request.form['cost']
