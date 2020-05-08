@@ -8,9 +8,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
     <title>{{title}}</title>
-    <link rel="icon"
-          href="https://cdn1.iconfinder.com/data/icons/education-filled-outline-8/64/Education-Filled_17-512.png"
-          type="images/x-icon">
+    <link rel="icon" href="https://cdn1.iconfinder.com/data/icons/education-filled-outline-8/64/Education-Filled_17-512.png" type="images/x-icon">
 </head>
 <style>
     #body-up {
@@ -19,6 +17,10 @@
         background-repeat: repeat;
         background-size: cover;
     }
+</style>
+<body>
+<header>
+    <style>
    nav {
     background: no-repeat url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEgV4FxErzsPuJxagmDV9F8W-gkQdG1Ge866m1oCuNrYF6zQWg&usqp=CAU");
     background-size: 100%;
@@ -35,96 +37,7 @@
     color: #fff00;
     width: 100%;
    }
-    footer {
-        position: fixed;
-        left: 0; bottom: 0;
-        width: 99.3%;
-        color: #fff
-        float: left;
-        opacity: 2.5;
-        margin-bottom: 3px;
-    }
-    footer #rights {
-        float: right;
-        width: 50%;
-        text-align: right;
-        font-size: 1.1em;
-    }
-    footer #social {
-        float: left;
-        width: 50%;
-    }
-    footer #social img {
-        width: 27px;
-        height: 27px;
-        float: left;
-        margin-right: 5px;
-        margin-bottom: 0px;
-    }
-            .forfoot {
-                margin-top: 110px;
-                width: 100%;
-                margin-bottom: -50px;
-                height: 50px;
-                text-align: center;
-                opacity: 2;
-            }
-            forfoot #fortext {
-                text-align: center;
-                margin-right: 20px;
-                margin-top; 10px;
-            }
-            forfoot #second {
-                text-align: right;
-                margin-right: 20px;
-                margin-top: 10px;
-
-            }
-            forfoot #third {
-                text-align: left;
-                margin-right: 20px;
-                margin-top: 10px;
-            }
-            forfoot #soc {
-                float: left;
-                width: 50%;
-            }
-            forfoot #soc img {
-                width: 15px;
-                height: 15px;
-                margin-right: 5px;
-                margin-bottom: 0px;
-                margin-left: 50%;
-                margin-right: 50%;
-            }
-            #tor {
-                width: 35px;
-                height: 35px;
-                margin-right: 15px;
-                text-align: center;
-            }
-            #sector {
-               width: 35px;
-               height: 35px;
-               margin-right: 15px;
-               text-align: center;
-            }
-            #thitor {
-                width: 35px;
-                height: 35px;
-                text-align: center;
-            }
-            #sector2 {
-               width: 35px;
-               height: 35px;
-            }
-            #thitor2 {
-                width: 35px;
-                height: 35px;
-            }
-</style>
-<body>
-<header>
+    </style>
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="/">Магазин VIPBook</a>
         {% if current_user.is_authenticated %}
@@ -182,6 +95,35 @@
         </script>
     </div>
 </header>
+
+<style>
+    footer {
+        position: fixed;
+        left: 0; bottom: 0;
+        width: 99.3%;
+        color: #fff
+        float: left;
+        opacity: 2.5;
+        margin-bottom: 3px;
+    }
+    footer #rights {
+        float: right;
+        width: 50%;
+        text-align: right;
+        font-size: 1.1em;
+    }
+    footer #social {
+        float: left;
+        width: 50%;
+    }
+    footer #social img {
+        width: 27px;
+        height: 27px;
+        float: left;
+        margin-right: 5px;
+        margin-bottom: 0px;
+    }
+</style>
 <footer class="footer">
     <div id="social">
         <a href="https://vk.com/ua_franko" title="Разработчик 1" target="_blank">
@@ -192,10 +134,8 @@
             <img src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/vk-128.png" alt="ВК 2"
                  title="Разработчик: Михаил Ватулич">
         </a>
-        <a href="https://www.who.int/ru/emergencies/diseases/novel-coronavirus-2019" title="Рекомендации ВОЗ"
-           target="_blank">
-            <img src="https://cdn4.iconfinder.com/data/icons/coronavirus-1/512/wuhan-coronavirus-virus-outbreak-10-128.png"
-                 alt="ВООЗ"
+         <a href="https://www.who.int/ru/emergencies/diseases/novel-coronavirus-2019" title="Рекомендации ВОЗ" target="_blank">
+            <img src="https://cdn4.iconfinder.com/data/icons/coronavirus-1/512/wuhan-coronavirus-virus-outbreak-10-128.png" alt="ВООЗ"
                  title="Рекомендации ВООЗ">
         </a>
     </div>
@@ -206,15 +146,79 @@
 <!-- Begin page content -->
 <main role="main" class="container">
     <article>
-        {% block content %}
-        {% endblock %}
+    {% block content %}
+    {% endblock %}
     </article>
 </main>
-{% if len_book == 0 %}
+<style>
+            .forfoot {
+                margin-top: 110px;
+                width: 100%;
+                margin-bottom: -50px;
+                height: 50px;
+                text-align: center;
+                opacity: 2;
+            }
+            forfoot #fortext {
+                text-align: center;
+                margin-right: 20px;
+                margin-top; 10px;
+            }
+            forfoot #second {
+                text-align: right;
+                margin-right: 20px;
+                margin-top: 10px;
+
+            }
+            forfoot #third {
+                text-align: left;
+                margin-right: 20px;
+                margin-top: 10px;
+            }
+            forfoot #soc {
+                float: left;
+                width: 50%;
+            }
+            forfoot #soc img {
+                width: 15px;
+                height: 15px;
+                margin-right: 5px;
+                margin-bottom: 0px;
+                margin-left: 50%;
+                margin-right: 50%;
+            }
+            #tor {
+                width: 35px;
+                height: 35px;
+                margin-right: 15px;
+                text-align: center;
+            }
+            #sector {
+               width: 35px;
+               height: 35px;
+               margin-right: 15px;
+               text-align: center;
+            }
+            #thitor {
+                width: 35px;
+                height: 35px;
+                text-align: center;
+            }
+            #sector2 {
+               width: 35px;
+               height: 35px;
+               margin-right: 15px;
+            }
+            #thitor2 {
+                width: 35px;
+                height: 35px;
+            }
+    </style>
+{%  if len_book == 0 %}
 <nav class="forfoot" style="margin-top: 410px">
     {% else %}
     <nav class="forfoot">
-        {% endif %}
+        {%  endif %}
         <div id="soc"><a href="/" title="На главную" target="_blank">
             <img src="https://cdn2.iconfinder.com/data/icons/25-free-ui-icons/40/home-128.png" alt="На главную"
                  title="На главную" id="tor">
@@ -230,18 +234,17 @@
                      title="Продать книгу" id="thitor">
             </a>
             {% else %}
-            <a href="/login" title="В корзину" target="_blank">
-                <img src="https://cdn2.iconfinder.com/data/icons/ecommerce-tiny-line/64/basket_ecommerce_shop-128.png"
-                     alt="В корзину"
-                     title="В корзину" id="sector2">
-            </a>
-            <a href="/login" title="Продать книгу" target="_blank">
-                <img src="https://cdn2.iconfinder.com/data/icons/3_Minicons-Free-_Pack/45/sell.png" alt="Продать книгу"
-                     title="Продать книгу" id="thitor2">
-            </a>
+        <a href="/login" title="В корзину" target="_blank">
+            <img src="https://cdn2.iconfinder.com/data/icons/ecommerce-tiny-line/64/basket_ecommerce_shop-128.png"
+                 alt="В корзину"
+                 title="В корзину" id="sector2">
+        </a>
+        <a href="/login" title="Продать книгу" target="_blank">
+            <img src="https://cdn2.iconfinder.com/data/icons/3_Minicons-Free-_Pack/45/sell.png" alt="Продать книгу"
+                 title="Продать книгу" id="thitor2">
+        </a>
             {% endif %}
         </div>
     </nav>
-</nav>
 </body>
 </html>
