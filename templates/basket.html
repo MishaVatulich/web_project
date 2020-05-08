@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<link href="/static/css/basket.css" type="text/css" rel="stylesheet">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,45 +9,9 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='css/style2.css') }}">
+    <link rel="stylesheet" type="text/css" href={{fun}}/>
     <title>Корзина</title>
 </head>
-<style>
-    #bodyus {
-        background: #f7f6f2 url(https://avatars.mds.yandex.net/get-pdb/1623506/29ac3087-3064-47ef-9fad-aabc43972b3e/s1200);
-        color: #000;
-        background-repeat: repeat;
-    }
-     .colortext {
-     color: brown;
-   }
-   #third {
-       text-align: center;
-   }
-   .colortext_2 {
-         color: red; /* Красный цвет выделения */
-         }
-   #flash {
-        margin-bottom: 25px;
-        }
-   #forma {
-        margin-top: 50%;
-        margin-right: 50%;
-    }
-    #one {
-        text-align: center;
-        position: absolute;
-        margin-left: 500px;
-        margin-right: 250px;
-        margin-right: -50%;
-        transform: translate(-50%, -50%)
-        margin-top: -400px;
-        margin-bottom: 20px;
-    }
-    #two {
-        text-align: center;
-    }
-</style>
 <body id="bodyus">
 <h1 id="third"><span class="colortext">Ваша корзина</span></h1>
 {% if len_books == 0 %}
