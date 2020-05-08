@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<link href="static/css/mainp.css" type="text/css" rel="stylesheet">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,66 +12,6 @@
     <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='css/style2.css') }}">
     <title>{{title}}</title>
     <style>
-    #filt2 {
-        width: 150px;
-        height: 60px;
-        margin-left: -155px;
-        margin-top: 2px;
-    }
-    #filt3 {
-        width: 150px;
-        height: 30px;
-        margin-left: -155px;
-        margin-top: 132px;
-    }
-    #min_cost {
-        width: 150px;
-        height: 40px;
-        margin-top: 12.5px;
-    }
-    #max_cost {
-        width: 150px;
-        height: 40px;
-        margin-top: 13.5px;
-    }
-    #filtbutt {
-        width: 150px;
-        height: 40px;
-        margin-left: -145px;
-        margin-top: 190px;
-    }
-    #margin {
-        padding: 3px;
-    }
-    #searches {
-        width: 150px;
-        height: 20px;
-        margin-left: -175px;
-        margin-top: 60px;
-    }
-    #ids {
-        margin-top: 20px;
-    }
-    #form {
-        margin-top: 64px;
-        margin-left: 50px;
-    }
-    #search_title {
-        margin-top: 5px;
-    }
-    #w1 {
-        width: 150px;
-    }
-    #w2 {
-        width: 150px;
-    }
-    #body {
-        background: #d1c7a1;
-        color: #000; /* Цвет текста */
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
     BODY { font: 10pt Arial, Helvetica, sans-serif; }
    #catalog DIV {
     margin: 0 0px 0px 0; /* Отступы */
@@ -78,19 +19,6 @@
     display: inline-block; /* Строчно-блочный элемент */
     vertical-align: top; /* Выравнивание по верхнему краю */
    }
-    #h1 {
-        text-align: center;
-        margin-top: -500px;
-    }
-    #btnfix {
-        margin-top: 50%;
-        margin-right: 50%;
-    }
-    #b-up {
-        background: #f7f6f2 url(https://avatars.mds.yandex.net/get-pdb/1623506/29ac3087-3064-47ef-9fad-aabc43972b3e/s1200);
-        color: #000;
-        background-repeat: repeat;
-    }
     </style>
 </head>
 <body id="b-up">
@@ -188,5 +116,4 @@
     </article>
 </div>
 </body>
-
 {% endblock %}
