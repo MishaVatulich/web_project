@@ -1,0 +1,34 @@
+#bodyus {
+        background: #f7f6f2 url(https://avatars.mds.yandex.net/get-pdb/1623506/29ac3087-3064-47ef-9fad-aabc43972b3e/s1200);
+        color: #000;
+        background-repeat: repeat;
+    }
+    .colortext {
+     color: brown;
+   }
+   #third {
+       text-align: center;
+   }
+   #flash {
+        margin-bottom: 25px;
+        }
+   #forma {
+        margin-top: 50%;
+        margin-right: 50%;
+    }
+    #one {
+        text-align: center;
+        position: absolute;
+        margin-left: 500px;
+        margin-right: 250px;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+        margin-top: -400px;
+        margin-bottom: 20px;
+    }
+    #two {
+        text-align: center;
+    }
+             .colortext_2 {
+         color: red; /* Красный цвет выделения */
+         }
