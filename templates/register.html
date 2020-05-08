@@ -1,17 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
-    .colortext {
-     color: red; /* Красный цвет выделения */
-   }
-   #body-up {
-        background: #f7f6f2 url(https://avatars.mds.yandex.net/get-pdb/1623506/29ac3087-3064-47ef-9fad-aabc43972b3e/s1200);
-        color: #000;
-        background-repeat: repeat;
-        background-size: cover;
-    }
-</style>
+<link href="static/css/registration.css" type="text/css" rel="stylesheet">
 <body id="body-up">
 <h1><span class="colortext">Регистрация</span></h1>
 <form action="" method="post">
@@ -21,34 +11,38 @@
         {{ form.email.label }}<br>
         {{ form.email(class="form-control", type="email") }}<br>
         {% for error in form.email.errors %}
-    <p class="alert alert-danger" role="alert">
-        {{ error }}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
     </p>
-    {% endfor %}
     <p>
         {{ form.password.label }}<br>
         {{ form.password(class="form-control", type="password") }}<br>
         {% for error in form.password.errors %}
-    <p class="alert alert-danger" role="alert">
-        {{ error }}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
     </p>
-    {% endfor %}
     <p>
         {{ form.password_again.label }}<br>
         {{ form.password_again(class="form-control", type="password") }}<br>
         {% for error in form.password_again.errors %}
-    <p class="alert alert-danger" role="alert">
-        {{ error }}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
     </p>
-    {% endfor %}
     <p>
         {{ form.name.label }}<br>
         {{ form.name(class="form-control") }}<br>
         {% for error in form.name.errors %}
-    <p class="alert alert-danger" role="alert">
-        {{ error }}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
     </p>
-    {% endfor %}
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
     {{message}}
 </form>
