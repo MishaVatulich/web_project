@@ -1,0 +1,110 @@
+#body-up {
+        background: #f7f6f2 url(https://avatars.mds.yandex.net/get-pdb/1623506/29ac3087-3064-47ef-9fad-aabc43972b3e/s1200);
+        color: #000;
+        background-repeat: repeat;
+        background-size: cover;
+    }
+    nav {
+    background: no-repeat url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEgV4FxErzsPuJxagmDV9F8W-gkQdG1Ge866m1oCuNrYF6zQWg&usqp=CAU");
+    background-size: 100%;
+    height: 60px;
+   }
+   #sechead {
+    position: relative;
+    margin-bottom: -1px;
+	height: 40px;
+	clear:both;
+    left: 0; bottom: 0;
+    padding: 10px;
+    background: #39b54a;
+    color: #fff00;
+    width: 100%;
+   }
+   footer {
+        position: fixed;
+        left: 0; bottom: 0;
+        width: 99.3%;
+        color: #fff
+        float: left;
+        opacity: 2.5;
+        margin-bottom: 3px;
+    }
+    footer #rights {
+        float: right;
+        width: 50%;
+        text-align: right;
+        font-size: 1.1em;
+    }
+    footer #social {
+        float: left;
+        width: 50%;
+    }
+    footer #social img {
+        width: 27px;
+        height: 27px;
+        float: left;
+        margin-right: 5px;
+        margin-bottom: 0px;
+    }
+     .forfoot {
+                margin-top: 110px;
+                width: 100%;
+                margin-bottom: -50px;
+                height: 50px;
+                text-align: center;
+                opacity: 2;
+            }
+            forfoot #fortext {
+                text-align: center;
+                margin-right: 20px;
+                margin-top; 10px;
+            }
+            forfoot #second {
+                text-align: right;
+                margin-right: 20px;
+                margin-top: 10px;
+
+            }
+            forfoot #third {
+                text-align: left;
+                margin-right: 20px;
+                margin-top: 10px;
+            }
+            forfoot #soc {
+                float: left;
+                width: 50%;
+            }
+            forfoot #soc img {
+                width: 15px;
+                height: 15px;
+                margin-right: 5px;
+                margin-bottom: 0px;
+                margin-left: 50%;
+                margin-right: 50%;
+            }
+            #tor {
+                width: 35px;
+                height: 35px;
+                margin-right: 15px;
+                text-align: center;
+            }
+            #sector {
+               width: 35px;
+               height: 35px;
+               margin-right: 15px;
+               text-align: center;
+            }
+            #thitor {
+                width: 35px;
+                height: 35px;
+                text-align: center;
+            }
+            #sector2 {
+               width: 35px;
+               height: 35px;
+               margin-right: 15px;
+            }
+            #thitor2 {
+                width: 35px;
+                height: 35px;
+            }
